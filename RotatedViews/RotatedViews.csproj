@@ -51,7 +51,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NETHook3_0">
-      <HintPath>..\..\..\..\..\..\Program Files\Mastercam 2021\Mastercam\NETHook3_0.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mastercam 2021\Mastercam\NETHook3_0.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
