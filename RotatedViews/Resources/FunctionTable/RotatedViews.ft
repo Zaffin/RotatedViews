@@ -1,0 +1,40 @@
+﻿###############################################################################
+# NETHook function table			
+###############################################################################
+#
+# Name		: RotatedViews.ft
+# NETHook 	: RotatedViews.dll
+# Date		: 
+# Author	: 
+# Language	: C#
+#
+###############################################################################
+
+
+######################
+# ASSIGN A UNIQUE NAME
+######################
+APPLICATION "_RotatedViews_"
+
+######################
+# NETHook LOCATION
+######################
+#
+FUNC_DLL   "CHOOKS\RotatedViews.dll"
+RES_DLL    "SAME"
+dnRES_NAME "RotatedViews.Resources.FunctionTable.Resource"
+CATEGORY   "RotatedViews"
+
+##############################################################################
+# Public functions here
+##############################################################################
+#
+
+FUNCTION NET "Run"
+    dnSPNG "Run16"
+    dnLPNG "Run32"
+    dnTIP  "RunTip"
+END_FUNCTION
+
+#
+# EOF
