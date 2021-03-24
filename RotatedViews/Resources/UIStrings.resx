@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AngleBetweenLabel" xml:space="preserve">
-    <value>Angle between</value>
+    <value>Angle bet_ween</value>
   </data>
   <data name="AngleLabel" xml:space="preserve">
-    <value>Angle:</value>
+    <value>An_gle:</value>
   </data>
   <data name="DistanceLabel" xml:space="preserve">
     <value>Distance:</value>
@@ -130,10 +130,19 @@
     <value>Instances</value>
   </data>
   <data name="NumberLabel" xml:space="preserve">
-    <value>Number:</value>
+    <value>_Number:</value>
   </data>
   <data name="RotationAxisLabel" xml:space="preserve">
     <value>Rotation Axis:</value>
+  </data>
+  <data name="RotationAxisXLabel" xml:space="preserve">
+    <value>_X</value>
+  </data>
+  <data name="RotationAxisYLabel" xml:space="preserve">
+    <value>_Y</value>
+  </data>
+  <data name="RotationAxisZLabel" xml:space="preserve">
+    <value>_Z</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
     <value>Settings</value>
@@ -145,6 +154,6 @@
     <value>Rotate View</value>
   </data>
   <data name="TotalSweepLabel" xml:space="preserve">
-    <value>Total sweep</value>
+    <value>Total _sweep</value>
   </data>
 </root>

@@ -24,7 +24,7 @@ namespace RotatedViews
             var ownerWindowHandle = MastercamWindow.GetHandle().Handle;
             _ = new System.Windows.Interop.WindowInteropHelper(view) { Owner = ownerWindowHandle };
 
-            view.Show();
+            view.ShowDialog();
 
             return MCamReturn.NoErrors;
         }

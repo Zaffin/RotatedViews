@@ -61,7 +61,7 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Angle between.
+        ///   Looks up a localized string similar to Angle bet_ween.
         /// </summary>
         public static string AngleBetweenLabel {
             get {
@@ -70,7 +70,7 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Angle:.
+        ///   Looks up a localized string similar to An_gle:.
         /// </summary>
         public static string AngleLabel {
             get {
@@ -97,7 +97,7 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number:.
+        ///   Looks up a localized string similar to _Number:.
         /// </summary>
         public static string NumberLabel {
             get {
@@ -111,6 +111,33 @@ namespace RotatedViews.Resources {
         public static string RotationAxisLabel {
             get {
                 return ResourceManager.GetString("RotationAxisLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _X.
+        /// </summary>
+        public static string RotationAxisXLabel {
+            get {
+                return ResourceManager.GetString("RotationAxisXLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Y.
+        /// </summary>
+        public static string RotationAxisYLabel {
+            get {
+                return ResourceManager.GetString("RotationAxisYLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Z.
+        /// </summary>
+        public static string RotationAxisZLabel {
+            get {
+                return ResourceManager.GetString("RotationAxisZLabel", resourceCulture);
             }
         }
         
@@ -142,7 +169,7 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total sweep.
+        ///   Looks up a localized string similar to Total _sweep.
         /// </summary>
         public static string TotalSweepLabel {
             get {
