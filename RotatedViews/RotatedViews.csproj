@@ -132,8 +132,6 @@
     <None Include="Resources\FunctionTable\RotatedViews.ft" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Assets\Run16.png" />
-    <Content Include="Resources\Assets\Run32.png" />
     <Resource Include="Views\Icons\Close32.png" />
     <Resource Include="Views\Icons\CloseMouseOver32.png" />
     <Resource Include="Views\Icons\Ok32.png" />
@@ -141,7 +139,10 @@
     <Resource Include="Views\Icons\OkNew32.png" />
     <Resource Include="Views\Icons\OkNewMouseOver32.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\Assets\RotateView16.png" />
+    <Content Include="Resources\Assets\RotateView32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

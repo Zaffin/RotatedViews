@@ -31,9 +31,9 @@ CATEGORY   "RotatedViews"
 #
 
 FUNCTION NET "Run"
-    dnSPNG "Run16"
-    dnLPNG "Run32"
-    dnTIP  "RunTip"
+    dnSPNG "RotateView16"
+    dnLPNG "RotateView32"
+    dnTIP  "RotateViewTip"
 END_FUNCTION
 
 #
