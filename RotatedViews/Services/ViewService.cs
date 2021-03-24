@@ -31,7 +31,7 @@ namespace RotatedViews.Services
                 {
                     ViewName = $"{view.ViewName} about {rotationAxis.Label} by {angle}deg.",
                     ViewOrigin = view.ViewOrigin,
-                    ViewMatrix = CreateMatrix(view, rotationAxis.Axis, angle)
+                    ViewMatrix = CreateMatrix(view.ViewMatrix, rotationAxis.Axis, angle)
                 };
 
                 rotatedView.Commit();
@@ -42,64 +42,54 @@ namespace RotatedViews.Services
             }
         }
 
-        private Matrix3D CreateMatrix(MCView view, Point3D rotationAxis, double angle)
+        private Matrix3D CreateMatrix(Matrix3D matrix, Point3D rotationAxis, double angle)
         {
             Point3D axisOne;
             Point3D axisTwo;
             Point3D axisThree;
 
-            if (view.ViewMatrix.Row1 == rotationAxis)
+            if (matrix.Row1 == rotationAxis)
             {
                 axisOne = rotationAxis;
 
-                axisTwo = VectorManager.Rotate(view.ViewMatrix.Row2, 
-                                               view.ViewOrigin, 
+                axisTwo = VectorManager.Rotate(matrix.Row2,  
                                                rotationAxis, 
                                                VectorManager.DegreesToRadians(angle));
 
-                axisThree = VectorManager.Rotate(view.ViewMatrix.Row3,
-                                                 view.ViewOrigin,
+                axisThree = VectorManager.Rotate(matrix.Row3,
                                                  rotationAxis,
                                                  VectorManager.DegreesToRadians(angle));
-
             }
-            else if (view.ViewMatrix.Row2 == rotationAxis)
+            else if (matrix.Row2 == rotationAxis)
             {
-                axisOne = VectorManager.Rotate(view.ViewMatrix.Row1,
-                                               view.ViewOrigin,
+                axisOne = VectorManager.Rotate(matrix.Row1,
                                                rotationAxis,
                                                VectorManager.DegreesToRadians(angle));
 
                 axisTwo = rotationAxis;
 
-                axisThree = VectorManager.Rotate(view.ViewMatrix.Row3,
-                                                 view.ViewOrigin,
+                axisThree = VectorManager.Rotate(matrix.Row3,
                                                  rotationAxis,
                                                  VectorManager.DegreesToRadians(angle));
-
             }
             else
             {
-                axisOne = VectorManager.Rotate(view.ViewMatrix.Row1,
-                                               view.ViewOrigin,
+                axisOne = VectorManager.Rotate(matrix.Row1,
                                                rotationAxis,
                                                VectorManager.DegreesToRadians(angle));
 
-                axisTwo = VectorManager.Rotate(view.ViewMatrix.Row2,
-                                               view.ViewOrigin,
+                axisTwo = VectorManager.Rotate(matrix.Row2,
                                                rotationAxis,
                                                VectorManager.DegreesToRadians(angle));
 
                 axisThree = rotationAxis;
-
-
             }
 
             return new Matrix3D
             {
-                Row1 = axisOne,
-                Row2 = axisTwo,
-                Row3 = axisThree
+                Row1 = VectorManager.Normalize(axisOne),
+                Row2 = VectorManager.Normalize(axisTwo),
+                Row3 = VectorManager.Normalize(axisThree)
             };
         }
     }
