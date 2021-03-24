@@ -118,19 +118,30 @@
             <TextBlock Text="{x:Static resources:UIStrings.SourceViewLabel}"
                        Margin="10,5,10,5"/>
 
-            <ComboBox x:Name="SourceViewComboBox"
-                  Grid.Row="2"
-                  Grid.Column="1"
-                  Grid.ColumnSpan="2"
-                  VerticalAlignment="Bottom"
-                  Margin="10,0,10,5"
-                  Height="25"
-                  IsTabStop="False"
-                  ItemsSource="{Binding Views}"
-                  DisplayMemberPath="ViewName"
-                  SelectedValue="{Binding SelectedView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  IsSynchronizedWithCurrentItem="True"/>
+            <DockPanel>
 
+                <Button x:Name="RefreshButton"
+                        VerticalAlignment="Center"
+                        Margin="0,0,10,0"
+                        Height="25"
+                        Width="25"
+                        DockPanel.Dock="Right"
+                        Command="{Binding RefreshCommand}">
+                    <Image Source="Icons/Refresh24.png"/>
+                </Button>
+
+                <ComboBox x:Name="SourceViewComboBox"
+                          VerticalAlignment="Center"
+                          Margin="10,5,5,5"
+                          Height="25"
+                          IsTabStop="False"
+                          DockPanel.Dock="Left"
+                          ItemsSource="{Binding Views}"
+                          DisplayMemberPath="ViewName"
+                          SelectedValue="{Binding SelectedView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          IsSynchronizedWithCurrentItem="True"/>
+             
+            </DockPanel>
 
         </StackPanel>
 
