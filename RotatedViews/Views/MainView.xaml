@@ -126,7 +126,8 @@
                         Height="25"
                         Width="25"
                         DockPanel.Dock="Right"
-                        Command="{Binding RefreshCommand}">
+                        Command="{Binding RefreshCommand}"
+                        Visibility="Collapsed">
                     <Image Source="Icons/Refresh24.png"/>
                 </Button>
 
@@ -232,7 +233,8 @@
                          VerticalContentAlignment="Center"
                          IsTabStop="True"
                          TabIndex="1"
-                         Text="{Binding NumberOfViews}"/>
+                         Text="{Binding NumberOfViews}" 
+                         GotFocus="TextBox_GotFocus"/>
 
                 <Label Grid.Row="1"
                        Grid.Column="0"
@@ -248,7 +250,8 @@
                          VerticalContentAlignment="Center"
                          IsTabStop="True"
                          TabIndex="1"
-                         Text="{Binding RotationAngle}"/>
+                         Text="{Binding RotationAngle}"
+                         GotFocus="TextBox_GotFocus"/>
 
                 <TextBlock Grid.Row="3"
                            Grid.Column="0"

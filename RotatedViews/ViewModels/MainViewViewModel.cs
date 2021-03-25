@@ -144,9 +144,9 @@
             this.ApplyCommand = new DelegateCommand(OnApplyCommand);
             this.OkCommand = new DelegateCommand(OnOkCommand);
             this.CancelCommand = new DelegateCommand(OnCancelCommand);
+            this.RefreshCommand = new DelegateCommand(OnRefreshCommand);
 
-            this.Views = this.mastercamService.GetViews();
-            this.SelectedView = Views.Find(v => v.ViewID == mastercamService.GetCurrentConstructionView().ViewID);
+            RefreshViewList(true);
 
             this.IsZAxis = true;
 
@@ -166,6 +166,8 @@
 
         public ICommand CancelCommand { get; }
 
+        public ICommand RefreshCommand { get; }
+
         #endregion
 
         #region Private Methods  
@@ -177,6 +179,8 @@
                                            NumberOfViews,
                                            RotationAngle,
                                            IsTotalSweep);
+
+            RefreshViewList();
         }
 
         private void OnOkCommand(object parameter)
@@ -197,6 +201,11 @@
             var view = (Window)parameter;
 
             view?.Close();
+        }
+
+        private void OnRefreshCommand(object parameter)
+        {
+            RefreshViewList();
         }
 
         private RotationAxis GetRotationAxis()
@@ -226,6 +235,19 @@
                 };
             }
                
+        }
+
+        private void RefreshViewList(bool isUsingConstructionView = false)
+        {
+            var selectedViewID = SelectedView?.ViewID;
+
+            if (isUsingConstructionView)
+            {
+                selectedViewID = mastercamService.GetCurrentConstructionView().ViewID;
+            }
+            
+            this.Views = this.mastercamService.GetViews();
+            this.SelectedView = Views.Find(v => v.ViewID == selectedViewID);
         }
 
         #endregion
