@@ -6,19 +6,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:resources="clr-namespace:RotatedViews.Resources"
         mc:Ignorable="d" 
-        Height="650"
-        Width="400"
-        MinHeight="550"
+        Height="675"
+        Width="375"
+        MinHeight="600"
         MinWidth="350"
         WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="31"/>
             <RowDefinition Height="63"/>
+            <RowDefinition Height="5*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Label x:Name="TitleLabel"
@@ -110,41 +110,35 @@
 
         </StackPanel>
 
-        <StackPanel Grid.Row="2"
-                    Orientation="Vertical"
-                    Background="Gainsboro"
-                    Margin="5,2.5">
+        <DockPanel Grid.Row="2"
+                   Background="Gainsboro"
+                   Margin="5,2.5"
+                   LastChildFill="True">
 
             <TextBlock Text="{x:Static resources:UIStrings.SourceViewLabel}"
-                       Margin="10,5,10,5"/>
+                       Margin="10,5,10,5"
+                       DockPanel.Dock="Top"/>
 
-            <DockPanel>
+            <ListBox x:Name="SourceViewComboBox"
+                     Margin="10,10"
+                     IsTabStop="False"
+                     DockPanel.Dock="Bottom"
+                     ItemsSource="{Binding Views}"
+                     DisplayMemberPath="ViewName"
+                     SelectedValue="{Binding SelectedView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     IsSynchronizedWithCurrentItem="True"/>
 
-                <Button x:Name="RefreshButton"
+        </DockPanel>
+
+        <Button x:Name="RefreshButton"
                         VerticalAlignment="Center"
                         Margin="0,0,10,0"
                         Height="25"
                         Width="25"
-                        DockPanel.Dock="Right"
                         Command="{Binding RefreshCommand}"
                         Visibility="Collapsed">
-                    <Image Source="Icons/Refresh24.png"/>
-                </Button>
-
-                <ComboBox x:Name="SourceViewComboBox"
-                          VerticalAlignment="Center"
-                          Margin="10,5,5,5"
-                          Height="25"
-                          IsTabStop="False"
-                          DockPanel.Dock="Left"
-                          ItemsSource="{Binding Views}"
-                          DisplayMemberPath="ViewName"
-                          SelectedValue="{Binding SelectedView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          IsSynchronizedWithCurrentItem="True"/>
-             
-            </DockPanel>
-
-        </StackPanel>
+            <Image Source="Icons/Refresh24.png"/>
+        </Button>
 
         <StackPanel Grid.Row="3"
                     Orientation="Vertical"
