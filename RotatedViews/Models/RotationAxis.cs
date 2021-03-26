@@ -13,5 +13,11 @@ namespace RotatedViews.Models
             Axis = new Point3D(0, 0, 1);
             Label = "WorldZ";
         }
+
+        public RotationAxis(Point3D axis, string label)
+        {
+            Axis = axis;
+            Label = label;
+        }
     }
 }

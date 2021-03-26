@@ -7,8 +7,11 @@ namespace RotatedViews.Services
 {
     public class ViewService : IViewService
     {
-        public void CreateRotatedViews(MCView view, RotationAxis rotationAxis, int number, double angle, DistanceType distanceTypep)
+
+        public void CreateRotatedViews(MCView view, ViewAxis selectedAxis, int number, double angle, DistanceType distanceTypep)
         {
+            var rotationAxis = GetRotationAxis(selectedAxis, view.ViewMatrix);
+
             if (distanceTypep == DistanceType.TotalSweep)
             {
                 angle /= number;
@@ -17,6 +20,34 @@ namespace RotatedViews.Services
             else
             {
                 RotateView(view, rotationAxis, number, angle);
+            }
+        }
+
+        private RotationAxis GetRotationAxis(ViewAxis axis, Matrix3D viewMatrix)
+        {
+            switch (axis)
+            {
+                case ViewAxis.XAxis:
+                    return new RotationAxis
+                    {
+                        Axis = viewMatrix.Row1,
+                        Label = "X"
+                    };
+
+                case ViewAxis.YAxis:
+                    return new RotationAxis
+                    {
+                        Axis = viewMatrix.Row2,
+                        Label = "Y"
+                    };
+                case ViewAxis.ZAxis:
+                    return new RotationAxis
+                    {
+                        Axis = viewMatrix.Row3,
+                        Label = "Z"
+                    };
+                default:
+                    return new RotationAxis();
             }
         }
 

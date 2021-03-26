@@ -141,7 +141,7 @@
         private void OnApplyCommand(object parameter)
         {
             viewService.CreateRotatedViews(SelectedView,
-                                           GetRotationAxis(),
+                                           SelectedViewAxis,
                                            NumberOfViews,
                                            RotationAngle,
                                            SelectedDistanceType);
@@ -154,7 +154,7 @@
             var view = (Window)parameter;
 
             viewService.CreateRotatedViews(SelectedView,
-                                           GetRotationAxis(), 
+                                           SelectedViewAxis, 
                                            NumberOfViews, 
                                            RotationAngle,
                                            SelectedDistanceType);
@@ -172,35 +172,6 @@
         private void OnRefreshCommand(object parameter)
         {
             RefreshViewList();
-        }
-
-        private RotationAxis GetRotationAxis()
-        {
-            switch (SelectedViewAxis)
-            {
-                case ViewAxis.XAxis:
-                    return new RotationAxis
-                    {
-                        Axis = SelectedView.ViewMatrix.Row1,
-                        Label = "X"
-                    };
-
-                case ViewAxis.YAxis:
-                    return new RotationAxis
-                    {
-                        Axis = SelectedView.ViewMatrix.Row2,
-                        Label = "Y"
-                    };
-                case ViewAxis.ZAxis:
-                    return new RotationAxis
-                    {
-                        Axis = SelectedView.ViewMatrix.Row3,
-                        Label = "Z"
-                    };
-                default:
-                    return new RotationAxis();
-            }
-             
         }
 
         private void RefreshViewList(bool isUsingConstructionView = false)
