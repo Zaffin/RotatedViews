@@ -1,15 +1,15 @@
 ﻿using Mastercam.Math;
 using Mastercam.Database;
 
-using RotatedViews.DataTypes;
+using RotatedViews.Models;
 
 namespace RotatedViews.Services
 {
     public class ViewService : IViewService
     {
-        public void CreateRotatedViews(MCView view, RotationAxis rotationAxis, int number, double angle, bool isTotalSweep)
+        public void CreateRotatedViews(MCView view, RotationAxis rotationAxis, int number, double angle, DistanceType distanceTypep)
         {
-            if (isTotalSweep)
+            if (distanceTypep == DistanceType.TotalSweep)
             {
                 angle /= number;
                 RotateView(view, rotationAxis, number, angle);

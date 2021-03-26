@@ -11,7 +11,7 @@
 
     using RotatedViews.Services;
     using RotatedViews.Commands;
-    using RotatedViews.DataTypes;
+    using RotatedViews.Models;
 
 
     public class MainViewViewModel : INotifyPropertyChanged
@@ -26,19 +26,13 @@
 
         private MCView selectedView;
 
-        private bool isXAxis;
-
-        private bool isYAxis;
-
-        private bool isZAxis;
+        private ViewAxis selectedViewAxis;
 
         private int numberOfViews;
 
         private double rotationAngle;
 
-        private bool isAngleBetween;
-
-        private bool isTotalSweep;
+        private DistanceType selectedDistanceType;
 
         #endregion
 
@@ -64,32 +58,12 @@
             }
         }
 
-        public bool IsXAxis
+        public ViewAxis SelectedViewAxis
         {
-            get => this.isXAxis;
+            get => this.selectedViewAxis;
             set
             {
-                this.isXAxis = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool IsYAxis
-        {
-            get => this.isYAxis;
-            set
-            {
-                this.isYAxis = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool IsZAxis
-        {
-            get => this.isZAxis;
-            set
-            {
-                this.isZAxis = value;
+                this.selectedViewAxis = value;
                 OnPropertyChanged();
             }
         }
@@ -114,22 +88,12 @@
             }
         }
 
-        public bool IsAngleBetween
+        public DistanceType SelectedDistanceType
         {
-            get => this.isAngleBetween;
+            get => this.selectedDistanceType;
             set
             {
-                this.isAngleBetween = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool IsTotalSweep
-        {
-            get => this.isTotalSweep;
-            set
-            {
-                this.isTotalSweep = value;
+                this.selectedDistanceType = value;
                 OnPropertyChanged();
             }
         }
@@ -150,12 +114,12 @@
 
             RefreshViewList(true);
 
-            this.IsZAxis = true;
+            this.SelectedViewAxis = ViewAxis.ZAxis;
 
             this.NumberOfViews = 1;
             this.RotationAngle = 45.0;
 
-            IsAngleBetween = true;
+            this.SelectedDistanceType = DistanceType.AngleBetween;
         }
 
         #endregion
@@ -180,7 +144,7 @@
                                            GetRotationAxis(),
                                            NumberOfViews,
                                            RotationAngle,
-                                           IsTotalSweep);
+                                           SelectedDistanceType);
 
             RefreshViewList();
         }
@@ -192,8 +156,8 @@
             viewService.CreateRotatedViews(SelectedView,
                                            GetRotationAxis(), 
                                            NumberOfViews, 
-                                           RotationAngle, 
-                                           IsTotalSweep);
+                                           RotationAngle,
+                                           SelectedDistanceType);
 
             view?.Close();
         }
@@ -212,31 +176,31 @@
 
         private RotationAxis GetRotationAxis()
         {
-            if (IsXAxis)
+            switch (SelectedViewAxis)
             {
-                return new RotationAxis
-                {
-                    Axis = SelectedView.ViewMatrix.Row1,
-                    Label = "X"
-                };
+                case ViewAxis.XAxis:
+                    return new RotationAxis
+                    {
+                        Axis = SelectedView.ViewMatrix.Row1,
+                        Label = "X"
+                    };
+
+                case ViewAxis.YAxis:
+                    return new RotationAxis
+                    {
+                        Axis = SelectedView.ViewMatrix.Row2,
+                        Label = "Y"
+                    };
+                case ViewAxis.ZAxis:
+                    return new RotationAxis
+                    {
+                        Axis = SelectedView.ViewMatrix.Row3,
+                        Label = "Z"
+                    };
+                default:
+                    return new RotationAxis();
             }
-            else if (IsYAxis)
-            {
-                return new RotationAxis
-                {
-                    Axis = SelectedView.ViewMatrix.Row2,
-                    Label = "Y"
-                };
-            }
-            else
-            {
-                return new RotationAxis
-                {
-                    Axis = SelectedView.ViewMatrix.Row3,
-                    Label = "Z"
-                };
-            }
-               
+             
         }
 
         private void RefreshViewList(bool isUsingConstructionView = false)

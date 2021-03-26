@@ -6,6 +6,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:resources="clr-namespace:RotatedViews.Resources"
         xmlns:rules="clr-namespace:RotatedViews.ValidationRules"
+        xmlns:converters="clr-namespace:RotatedViews.Converters"
         mc:Ignorable="d" 
         Height="675"
         Width="375"
@@ -24,6 +25,9 @@
                 </Grid>
             </Border>
         </ControlTemplate>
+
+        <converters:RadioButtonToEnumConverter x:Key="radioButtonToEnumConverter" />
+
     </Window.Resources>
 
     <Window.InputBindings>
@@ -216,18 +220,24 @@
                                  Content="{x:Static resources:UIStrings.RotationAxisXLabel}"
                                  Margin="0,0,0,5"
                                  IsTabStop="False"
-                                 IsChecked="{Binding IsXAxis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                 IsChecked="{Binding Path=SelectedViewAxis, 
+                                                 Converter={StaticResource radioButtonToEnumConverter}, 
+                                                 ConverterParameter=YAxis}"/>
                     <RadioButton x:Name="YAxis"  
                                  GroupName="RotationAxis" 
                                  Content="{x:Static resources:UIStrings.RotationAxisYLabel}" 
                                  Margin="0,0,0,5"
                                  IsTabStop="False"
-                                 IsChecked="{Binding IsYAxis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                 IsChecked="{Binding Path=SelectedViewAxis, 
+                                                     Converter={StaticResource radioButtonToEnumConverter}, 
+                                                     ConverterParameter=YAxis}"/>
                     <RadioButton x:Name="ZAxis"  
                                  GroupName="RotationAxis" 
                                  Content="{x:Static resources:UIStrings.RotationAxisZLabel}" 
                                  IsTabStop="False"
-                                 IsChecked="{Binding IsZAxis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                 IsChecked="{Binding Path=SelectedViewAxis, 
+                                                     Converter={StaticResource radioButtonToEnumConverter}, 
+                                                     ConverterParameter=ZAxis}"/>
 
                 </StackPanel>
             </Grid>
@@ -317,18 +327,22 @@
                             HorizontalAlignment="Left" 
                             VerticalAlignment="Top"
                             Margin="10,5">
-            
+
                     <RadioButton x:Name="AngleBetween" 
                                  GroupName="Distance" 
                                  Content="{x:Static resources:UIStrings.AngleBetweenLabel}"
                                  Margin="0,0,0,5"
                                  IsTabStop="False"
-                                 IsChecked="{Binding IsAngleBetween, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                 IsChecked="{Binding Path=SelectedDistanceType, 
+                                                     Converter={StaticResource radioButtonToEnumConverter}, 
+                                                     ConverterParameter=AngleBetween}"/>
                     <RadioButton x:Name="TotalSweep"  
                                  GroupName="Distance" 
                                  Content="{x:Static resources:UIStrings.TotalSweepLabel}" 
                                  IsTabStop="False"
-                                 IsChecked="{Binding IsTotalSweep, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                 IsChecked="{Binding Path=SelectedDistanceType, 
+                                                     Converter={StaticResource radioButtonToEnumConverter}, 
+                                                     ConverterParameter=TotalSweep}"/>
         
                 </StackPanel>
             </Grid>
