@@ -1,5 +1,6 @@
 ﻿namespace RotatedViews.ViewModel
 {
+    using System;
     using System.Windows;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -11,6 +12,7 @@
     using RotatedViews.Services;
     using RotatedViews.Commands;
     using RotatedViews.DataTypes;
+
 
     public class MainViewViewModel : INotifyPropertyChanged
     {

@@ -79,11 +79,56 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply the current rotation.
+        /// </summary>
+        public static string ApplyToolTipBody {
+            get {
+                return ResourceManager.GetString("ApplyToolTipBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply - Shift+Enter.
+        /// </summary>
+        public static string ApplyToolTipTitle {
+            get {
+                return ResourceManager.GetString("ApplyToolTipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close Rotate View.
+        /// </summary>
+        public static string CloseToolTipBody {
+            get {
+                return ResourceManager.GetString("CloseToolTipBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close - Escape.
+        /// </summary>
+        public static string CloseToolTipTitle {
+            get {
+                return ResourceManager.GetString("CloseToolTipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Distance:.
         /// </summary>
         public static string DistanceLabel {
             get {
                 return ResourceManager.GetString("DistanceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Angle must be a number.
+        /// </summary>
+        public static string DoubleRuleLabel {
+            get {
+                return ResourceManager.GetString("DoubleRuleLabel", resourceCulture);
             }
         }
         
@@ -102,6 +147,33 @@ namespace RotatedViews.Resources {
         public static string NumberLabel {
             get {
                 return ResourceManager.GetString("NumberLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply the current rotation and close Rotate View.
+        /// </summary>
+        public static string OkToolTipBody {
+            get {
+                return ResourceManager.GetString("OkToolTipBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok - Enter.
+        /// </summary>
+        public static string OkToolTipTitle {
+            get {
+                return ResourceManager.GetString("OkToolTipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number must be a positive integer.
+        /// </summary>
+        public static string PositiveIntegerRuleLabel {
+            get {
+                return ResourceManager.GetString("PositiveIntegerRuleLabel", resourceCulture);
             }
         }
         

@@ -97,6 +97,8 @@
     <Compile Include="Services\IMastercamService.cs" />
     <Compile Include="Services\MastercamService.cs" />
     <Compile Include="Services\ViewService.cs" />
+    <Compile Include="ValidationRules\PositiveIntegerRule.cs" />
+    <Compile Include="ValidationRules\DoubleRule.cs" />
     <Compile Include="ViewModels\MainViewViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>

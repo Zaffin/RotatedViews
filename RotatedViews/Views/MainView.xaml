@@ -5,12 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:resources="clr-namespace:RotatedViews.Resources"
+        xmlns:rules="clr-namespace:RotatedViews.ValidationRules"
         mc:Ignorable="d" 
         Height="675"
         Width="375"
         MinHeight="600"
         MinWidth="350"
         WindowStyle="None">
+
+    <Window.Resources>
+        <ControlTemplate x:Key="errorTemplate">
+            <Border BorderBrush="OrangeRed" BorderThickness="2">
+                <Grid>
+                    <AdornedElementPlaceholder/>
+                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="OrangeRed"
+                               VerticalAlignment="Center" HorizontalAlignment="Right"
+                               Margin="0,0,4,0"/>
+                </Grid>
+            </Border>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding Key="Return" Modifiers="Shift"
+                    Command="{Binding ApplyCommand}"/>
+    </Window.InputBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="31"/>
@@ -58,12 +78,20 @@
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Button.Template>
+                <Button.ToolTip>
+                    <StackPanel>
+                        <TextBlock FontWeight="Bold" 
+                                   Text="{x:Static resources:UIStrings.CloseToolTipTitle}"/>
+                        <TextBlock Text="{x:Static resources:UIStrings.CloseToolTipBody}"/>
+                    </StackPanel>
+                </Button.ToolTip>
             </Button>
 
             <Button x:Name="OkButton"
                     Height="35"
                     Width="35"
                     Background="Transparent"
+                    IsDefault="True"
                     Command="{Binding OkCommand}"
                     CommandParameter="{Binding ElementName=MainWindow}">
                 <Button.Template>
@@ -82,13 +110,19 @@
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Button.Template>
+                <Button.ToolTip>
+                    <StackPanel>
+                        <TextBlock FontWeight="Bold" 
+                                   Text="{x:Static resources:UIStrings.OkToolTipTitle}"/>
+                        <TextBlock Text="{x:Static resources:UIStrings.OkToolTipBody}"/>
+                    </StackPanel>
+                </Button.ToolTip>
             </Button>
 
             <Button x:Name="ApplyButton"
                     Height="35"
                     Width="35"
                     Background="Transparent"
-                    IsDefault="True"
                     Command="{Binding ApplyCommand}">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
@@ -106,6 +140,13 @@
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Button.Template>
+                <Button.ToolTip>
+                    <StackPanel>
+                        <TextBlock FontWeight="Bold" 
+                                   Text="{x:Static resources:UIStrings.ApplyToolTipTitle}"/>
+                        <TextBlock Text="{x:Static resources:UIStrings.ApplyToolTipBody}"/>
+                    </StackPanel>
+                </Button.ToolTip>
             </Button>
 
         </StackPanel>
@@ -227,8 +268,17 @@
                          VerticalContentAlignment="Center"
                          IsTabStop="True"
                          TabIndex="1"
-                         Text="{Binding NumberOfViews}" 
-                         GotFocus="TextBox_GotFocus"/>
+                         GotFocus="TextBox_GotFocus"
+                         Validation.ErrorTemplate="{StaticResource errorTemplate}">
+                    <TextBox.Text>
+                        <Binding Path="NumberOfViews"
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <rules:PositiveIntegerRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
                 <Label Grid.Row="1"
                        Grid.Column="0"
@@ -243,9 +293,18 @@
                          Margin="10,2.5"
                          VerticalContentAlignment="Center"
                          IsTabStop="True"
-                         TabIndex="1"
-                         Text="{Binding RotationAngle}"
-                         GotFocus="TextBox_GotFocus"/>
+                         TabIndex="2"
+                         GotFocus="TextBox_GotFocus"
+                         Validation.ErrorTemplate="{StaticResource errorTemplate}">
+                    <TextBox.Text>
+                        <Binding Path="RotationAngle"
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <rules:DoubleRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
                 <TextBlock Grid.Row="3"
                            Grid.Column="0"

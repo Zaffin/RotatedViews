@@ -123,14 +123,38 @@
   <data name="AngleLabel" xml:space="preserve">
     <value>An_gle:</value>
   </data>
+  <data name="ApplyToolTipBody" xml:space="preserve">
+    <value>Apply the current rotation</value>
+  </data>
+  <data name="ApplyToolTipTitle" xml:space="preserve">
+    <value>Apply - Shift+Enter</value>
+  </data>
+  <data name="CloseToolTipBody" xml:space="preserve">
+    <value>Close Rotate View</value>
+  </data>
+  <data name="CloseToolTipTitle" xml:space="preserve">
+    <value>Close - Escape</value>
+  </data>
   <data name="DistanceLabel" xml:space="preserve">
     <value>Distance:</value>
+  </data>
+  <data name="DoubleRuleLabel" xml:space="preserve">
+    <value>Angle must be a number</value>
   </data>
   <data name="InstancesLabel" xml:space="preserve">
     <value>Instances</value>
   </data>
   <data name="NumberLabel" xml:space="preserve">
     <value>_Number:</value>
+  </data>
+  <data name="OkToolTipBody" xml:space="preserve">
+    <value>Apply the current rotation and close Rotate View</value>
+  </data>
+  <data name="OkToolTipTitle" xml:space="preserve">
+    <value>Ok - Enter</value>
+  </data>
+  <data name="PositiveIntegerRuleLabel" xml:space="preserve">
+    <value>Number must be a positive integer</value>
   </data>
   <data name="RotationAxisLabel" xml:space="preserve">
     <value>Rotation Axis:</value>
