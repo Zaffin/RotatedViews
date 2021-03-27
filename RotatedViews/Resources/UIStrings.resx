@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdvancedTabLabel" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
   <data name="AngleBetweenLabel" xml:space="preserve">
     <value>Angle bet_ween</value>
   </data>
@@ -128,6 +131,9 @@
   </data>
   <data name="ApplyToolTipTitle" xml:space="preserve">
     <value>Apply - Shift+Enter</value>
+  </data>
+  <data name="BasicTabLabel" xml:space="preserve">
+    <value>Basic</value>
   </data>
   <data name="CloseToolTipBody" xml:space="preserve">
     <value>Close Rotate View</value>
@@ -179,5 +185,8 @@
   </data>
   <data name="TotalSweepLabel" xml:space="preserve">
     <value>Total _sweep</value>
+  </data>
+  <data name="ViewNameLabel" xml:space="preserve">
+    <value>View Name Template</value>
   </data>
 </root>

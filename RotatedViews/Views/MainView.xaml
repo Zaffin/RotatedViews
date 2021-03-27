@@ -15,6 +15,12 @@
         WindowStyle="None">
 
     <Window.Resources>
+        <converters:RadioButtonToEnumConverter x:Key="radioButtonToEnumConverter" />
+
+        <SolidColorBrush x:Key="Brush.Transparent" Color="#00000000"/>
+        <SolidColorBrush x:Key="Brush.DarkCharcoal" Color="#333333"/>
+        <SolidColorBrush x:Key="Brush.CyanBlue" Color="#0e70c0"/>
+
         <ControlTemplate x:Key="errorTemplate">
             <Border BorderBrush="OrangeRed" BorderThickness="2">
                 <Grid>
@@ -26,7 +32,99 @@
             </Border>
         </ControlTemplate>
 
-        <converters:RadioButtonToEnumConverter x:Key="radioButtonToEnumConverter" />
+        <Style TargetType="TabItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border BorderThickness="0">
+                            <Grid Name="TabPanel">
+                                <ContentPresenter x:Name="ContentSite"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"
+                                                  ContentSource="Header"
+                                                  Margin="10,2"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="TabPanel" Property="Background" Value="White" />
+                                <Setter Property="Foreground" Value="{StaticResource Brush.CyanBlue}" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="TabPanel" Property="Background" Value="{StaticResource Brush.Transparent}" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <SolidColorBrush x:Key="TabItem.Selected.Background" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="TabItem.Selected.Border" Color="#ACACAC"/>
+        <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="{StaticResource TabItem.Selected.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Brush.Transparent}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabControl}">
+                        <Grid x:Name="templateRoot" ClipToBounds="true" SnapsToDevicePixels="true" KeyboardNavigation.TabNavigation="Local">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition x:Name="ColumnDefinition0"/>
+                                <ColumnDefinition x:Name="ColumnDefinition1" Width="0"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition x:Name="RowDefinition0" Height="Auto"/>
+                                <RowDefinition x:Name="RowDefinition1" Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TabPanel x:Name="headerPanel" Background="{StaticResource Brush.DarkCharcoal}" Grid.Column="0" IsItemsHost="true" Grid.Row="0" KeyboardNavigation.TabIndex="1" Panel.ZIndex="1"/>
+                            <Border x:Name="contentPanel" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Column="0" KeyboardNavigation.DirectionalNavigation="Contained" Grid.Row="1" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
+                                <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="TabStripPlacement" Value="Bottom">
+                                <Setter Property="Grid.Row" TargetName="headerPanel" Value="1"/>
+                                <Setter Property="Grid.Row" TargetName="contentPanel" Value="0"/>
+                                <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                                <Setter Property="Height" TargetName="RowDefinition1" Value="Auto"/>
+                                <Setter Property="Margin" TargetName="headerPanel" Value="2,0,2,2"/>
+                            </Trigger>
+                            <Trigger Property="TabStripPlacement" Value="Left">
+                                <Setter Property="Grid.Row" TargetName="headerPanel" Value="0"/>
+                                <Setter Property="Grid.Row" TargetName="contentPanel" Value="0"/>
+                                <Setter Property="Grid.Column" TargetName="headerPanel" Value="0"/>
+                                <Setter Property="Grid.Column" TargetName="contentPanel" Value="1"/>
+                                <Setter Property="Width" TargetName="ColumnDefinition0" Value="Auto"/>
+                                <Setter Property="Width" TargetName="ColumnDefinition1" Value="*"/>
+                                <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                                <Setter Property="Height" TargetName="RowDefinition1" Value="0"/>
+                                <Setter Property="Margin" TargetName="headerPanel" Value="2,2,0,2"/>
+                            </Trigger>
+                            <Trigger Property="TabStripPlacement" Value="Right">
+                                <Setter Property="Grid.Row" TargetName="headerPanel" Value="0"/>
+                                <Setter Property="Grid.Row" TargetName="contentPanel" Value="0"/>
+                                <Setter Property="Grid.Column" TargetName="headerPanel" Value="1"/>
+                                <Setter Property="Grid.Column" TargetName="contentPanel" Value="0"/>
+                                <Setter Property="Width" TargetName="ColumnDefinition0" Value="*"/>
+                                <Setter Property="Width" TargetName="ColumnDefinition1" Value="Auto"/>
+                                <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                                <Setter Property="Height" TargetName="RowDefinition1" Value="0"/>
+                                <Setter Property="Margin" TargetName="headerPanel" Value="0,2,2,2"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="TextElement.Foreground" TargetName="templateRoot" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
     </Window.Resources>
 
@@ -38,10 +136,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="31"/>
-            <RowDefinition Height="63"/>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="42"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -49,14 +144,13 @@
                Grid.Row="0"
                Content="{x:Static resources:UIStrings.TitleLabel}"
                FontSize="16"
-               Foreground="#0d64d2"
+               Foreground="{StaticResource Brush.CyanBlue}"
                MouseDown="TitleLabel_MouseDown"/>
 
         <StackPanel Grid.Row="1"
                     FlowDirection="RightToLeft"
                     Orientation="Horizontal"
-                    Background="#333333"
-                    Margin="0,0,0,2.5">
+                    Background="{StaticResource Brush.DarkCharcoal}">
 
             <Button x:Name="CancelButton"
                     Height="35"
@@ -155,197 +249,256 @@
 
         </StackPanel>
 
-        <DockPanel Grid.Row="2"
-                   Background="Gainsboro"
-                   Margin="5,2.5"
-                   LastChildFill="True">
+        <TabControl Grid.Row="2" 
+                    Style="{DynamicResource TabControlStyle}">
+            
+            <TabItem Header="{x:Static resources:UIStrings.BasicTabLabel}"
+                     Height="21">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-            <TextBlock Text="{x:Static resources:UIStrings.SourceViewLabel}"
-                       Margin="10,5,10,5"
-                       DockPanel.Dock="Top"/>
+                    <DockPanel Grid.Row="0"
+                               Background="Gainsboro"
+                               Margin="5,2.5"
+                               LastChildFill="True">
 
-            <ListBox x:Name="SourceViewComboBox"
-                     Margin="10,10"
-                     IsTabStop="False"
-                     DockPanel.Dock="Bottom"
-                     ItemsSource="{Binding Views}"
-                     DisplayMemberPath="ViewName"
-                     SelectedValue="{Binding SelectedView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     IsSynchronizedWithCurrentItem="True"/>
+                        <TextBlock Text="{x:Static resources:UIStrings.SourceViewLabel}"
+                                   Margin="10,5,10,5"
+                                   DockPanel.Dock="Top" 
+                                   Foreground="Black"/>
 
-        </DockPanel>
-
-        <Button x:Name="RefreshButton"
-                        VerticalAlignment="Center"
-                        Margin="0,0,10,0"
-                        Height="25"
-                        Width="25"
-                        Command="{Binding RefreshCommand}"
-                        Visibility="Collapsed">
-            <Image Source="Icons/Refresh24.png"/>
-        </Button>
-
-        <StackPanel Grid.Row="3"
-                    Orientation="Vertical"
-                    Background="Gainsboro"
-                    Margin="5,2.5">
-
-            <TextBlock Text="{x:Static resources:UIStrings.SettingsLabel}"
-                       Margin="10,5,10,5"/>
-            <Grid>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Grid.Row="0"
-                           Grid.Column="0"
-                           Margin="10,0"
-                           Text="{x:Static resources:UIStrings.RotationAxisLabel}"/>
-
-                <StackPanel Grid.Row="3" 
-                            Grid.Column="2"  
-                            Orientation="Vertical" 
-                            HorizontalAlignment="Left" 
-                            VerticalAlignment="Top"
-                            Margin="10,2.5,0,5">
-
-                    <RadioButton x:Name="XAxis" 
-                                 GroupName="RotationAxis" 
-                                 Content="{x:Static resources:UIStrings.RotationAxisXLabel}"
-                                 Margin="0,0,0,5"
+                        <ListBox x:Name="SourceViewComboBox"
+                                 Margin="10,10"
                                  IsTabStop="False"
-                                 IsChecked="{Binding Path=SelectedViewAxis, 
-                                                 Converter={StaticResource radioButtonToEnumConverter}, 
-                                                 ConverterParameter=YAxis}"/>
-                    <RadioButton x:Name="YAxis"  
-                                 GroupName="RotationAxis" 
-                                 Content="{x:Static resources:UIStrings.RotationAxisYLabel}" 
-                                 Margin="0,0,0,5"
-                                 IsTabStop="False"
-                                 IsChecked="{Binding Path=SelectedViewAxis, 
-                                                     Converter={StaticResource radioButtonToEnumConverter}, 
-                                                     ConverterParameter=YAxis}"/>
-                    <RadioButton x:Name="ZAxis"  
-                                 GroupName="RotationAxis" 
-                                 Content="{x:Static resources:UIStrings.RotationAxisZLabel}" 
-                                 IsTabStop="False"
-                                 IsChecked="{Binding Path=SelectedViewAxis, 
-                                                     Converter={StaticResource radioButtonToEnumConverter}, 
-                                                     ConverterParameter=ZAxis}"/>
+                                 DockPanel.Dock="Bottom"
+                                 ItemsSource="{Binding Views}"
+                                 DisplayMemberPath="ViewName"
+                                 SelectedValue="{Binding SelectedView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 IsSynchronizedWithCurrentItem="True"/>
 
-                </StackPanel>
-            </Grid>
-        </StackPanel>
-        
-        <StackPanel Grid.Row="4"
-                    Orientation="Vertical"
-                    Background="Gainsboro"
-                    Margin="5,2.5">
+                    </DockPanel>
 
-            <TextBlock Text="{x:Static resources:UIStrings.InstancesLabel}"
-                       Margin="10,5,10,5"/>
+                    <Button x:Name="RefreshButton"
+                            VerticalAlignment="Center"
+                            Margin="0,0,10,0"
+                            Height="25"
+                            Width="25"
+                            Command="{Binding RefreshCommand}"
+                            Visibility="Collapsed">
+                        <Image Source="Icons/Refresh24.png"/>
+                    </Button>
 
-            <Grid>
+                    <StackPanel Grid.Row="1"
+                                Orientation="Vertical"
+                                Background="Gainsboro"
+                                Margin="5,2.5">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                        <TextBlock Text="{x:Static resources:UIStrings.SettingsLabel}"
+                                   Margin="10,5,10,5"
+                                   Foreground="Black"/>
+                        <Grid>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-                
-                <Label Grid.Row="0"
-                       Grid.Column="0"
-                       Margin="5,0"
-                       Content="{x:Static resources:UIStrings.NumberLabel}"
-                       Target="{Binding ElementName=NumberTextBox}"
-                       VerticalAlignment="Center"/>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                <TextBox x:Name="NumberTextBox"
-                         Grid.Row="0"
-                         Grid.Column="1"
-                         Margin="10,2.5"
-                         VerticalContentAlignment="Center"
-                         IsTabStop="True"
-                         TabIndex="1"
-                         GotFocus="TextBox_GotFocus"
-                         Validation.ErrorTemplate="{StaticResource errorTemplate}">
-                    <TextBox.Text>
-                        <Binding Path="NumberOfViews"
-                                 UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <rules:PositiveIntegerRule/>
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="1"
-                       Grid.Column="0"
-                       Margin="5,0"
-                       Content="{x:Static resources:UIStrings.AngleLabel}"
-                       Target="{Binding ElementName=AngleTextBlock}"
-                       VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="0"
+                                       Margin="10,0"
+                                       Foreground="Black"
+                                        Text="{x:Static resources:UIStrings.RotationAxisLabel}"/>
 
-                <TextBox x:Name="AngleTextBlock"
-                         Grid.Row="1"
-                         Grid.Column="1"
-                         Margin="10,2.5"
-                         VerticalContentAlignment="Center"
-                         IsTabStop="True"
-                         TabIndex="2"
-                         GotFocus="TextBox_GotFocus"
-                         Validation.ErrorTemplate="{StaticResource errorTemplate}">
-                    <TextBox.Text>
-                        <Binding Path="RotationAngle"
-                                 UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <rules:DoubleRule/>
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
+                            <StackPanel Grid.Row="3" 
+                                        Grid.Column="2"  
+                                        Orientation="Vertical" 
+                                        HorizontalAlignment="Left" 
+                                        VerticalAlignment="Top"
+                                        Margin="10,2.5,0,5">
 
-                <TextBlock Grid.Row="3"
-                           Grid.Column="0"
-                           Margin="10,5"
-                           Text="{x:Static resources:UIStrings.DistanceLabel}"/>
+                                <RadioButton x:Name="XAxis" 
+                                             GroupName="RotationAxis" 
+                                             Content="{x:Static resources:UIStrings.RotationAxisXLabel}"
+                                             Margin="0,0,0,5"
+                                             IsTabStop="False"
+                                             IsChecked="{Binding Path=SelectedViewAxis, 
+                                                             Converter={StaticResource radioButtonToEnumConverter}, 
+                                                             ConverterParameter=XAxis}"/>
+                                <RadioButton x:Name="YAxis"  
+                                             GroupName="RotationAxis" 
+                                             Content="{x:Static resources:UIStrings.RotationAxisYLabel}" 
+                                             Margin="0,0,0,5"
+                                             IsTabStop="False"
+                                             IsChecked="{Binding Path=SelectedViewAxis, 
+                                                                 Converter={StaticResource radioButtonToEnumConverter}, 
+                                                                 ConverterParameter=YAxis}"/>
+                                <RadioButton x:Name="ZAxis"  
+                                             GroupName="RotationAxis" 
+                                             Content="{x:Static resources:UIStrings.RotationAxisZLabel}" 
+                                             IsTabStop="False"
+                                             IsChecked="{Binding Path=SelectedViewAxis, 
+                                                                 Converter={StaticResource radioButtonToEnumConverter}, 
+                                                                 ConverterParameter=ZAxis}"/>
 
-                <StackPanel Grid.Row="3" 
-                            Grid.Column="1"  
-                            Orientation="Vertical" 
-                            HorizontalAlignment="Left" 
-                            VerticalAlignment="Top"
-                            Margin="10,5">
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
 
-                    <RadioButton x:Name="AngleBetween" 
-                                 GroupName="Distance" 
-                                 Content="{x:Static resources:UIStrings.AngleBetweenLabel}"
-                                 Margin="0,0,0,5"
-                                 IsTabStop="False"
-                                 IsChecked="{Binding Path=SelectedDistanceType, 
-                                                     Converter={StaticResource radioButtonToEnumConverter}, 
-                                                     ConverterParameter=AngleBetween}"/>
-                    <RadioButton x:Name="TotalSweep"  
-                                 GroupName="Distance" 
-                                 Content="{x:Static resources:UIStrings.TotalSweepLabel}" 
-                                 IsTabStop="False"
-                                 IsChecked="{Binding Path=SelectedDistanceType, 
-                                                     Converter={StaticResource radioButtonToEnumConverter}, 
-                                                     ConverterParameter=TotalSweep}"/>
-        
-                </StackPanel>
-            </Grid>
-        </StackPanel>
+                    <StackPanel Grid.Row="2"
+                                Orientation="Vertical"
+                                Background="Gainsboro"
+                                Margin="5,2.5,5,50">
+
+                        <TextBlock Text="{x:Static resources:UIStrings.InstancesLabel}"
+                                   Margin="10,5,10,5"
+                                   Foreground="Black"/>
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Margin="5,0"
+                                   Content="{x:Static resources:UIStrings.NumberLabel}"
+                                   Target="{Binding ElementName=NumberTextBox}"
+                                   VerticalAlignment="Center"/>
+
+                            <TextBox x:Name="NumberTextBox"
+                                     Grid.Row="0"
+                                     Grid.Column="1"
+                                     Margin="10,2.5"
+                                     VerticalContentAlignment="Center"
+                                     IsTabStop="True"
+                                     TabIndex="1"
+                                     GotFocus="TextBox_GotFocus"
+                                     Validation.ErrorTemplate="{StaticResource errorTemplate}">
+                                <TextBox.Text>
+                                    <Binding Path="NumberOfViews"
+                                             UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <rules:PositiveIntegerRule/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+
+                            <Label Grid.Row="1"
+                                   Grid.Column="0"
+                                   Margin="5,0"
+                                   Content="{x:Static resources:UIStrings.AngleLabel}"
+                                   Target="{Binding ElementName=AngleTextBlock}"
+                                   VerticalAlignment="Center"/>
+
+                            <TextBox x:Name="AngleTextBlock"
+                                     Grid.Row="1"
+                                     Grid.Column="1"
+                                     Margin="10,2.5"
+                                     VerticalContentAlignment="Center"
+                                     IsTabStop="True"
+                                     TabIndex="2"
+                                     GotFocus="TextBox_GotFocus"
+                                     Validation.ErrorTemplate="{StaticResource errorTemplate}">
+                                <TextBox.Text>
+                                    <Binding Path="RotationAngle"
+                                            UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <rules:DoubleRule/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+
+                            <TextBlock Grid.Row="3"
+                                       Grid.Column="0"
+                                       Margin="10,5"
+                                       Foreground="Black"
+                                       Text="{x:Static resources:UIStrings.DistanceLabel}"/>
+
+                            <StackPanel Grid.Row="3" 
+                                        Grid.Column="1"  
+                                        Orientation="Vertical" 
+                                        HorizontalAlignment="Left" 
+                                        VerticalAlignment="Top"
+                                        Margin="10,5">
+
+                                <RadioButton x:Name="AngleBetween" 
+                                             GroupName="Distance" 
+                                             Content="{x:Static resources:UIStrings.AngleBetweenLabel}"
+                                             Margin="0,0,0,5"
+                                             IsTabStop="False"
+                                             IsChecked="{Binding Path=SelectedDistanceType, 
+                                                                 Converter={StaticResource radioButtonToEnumConverter}, 
+                                                                 ConverterParameter=AngleBetween}"/>
+                                <RadioButton x:Name="TotalSweep"  
+                                             GroupName="Distance" 
+                                             Content="{x:Static resources:UIStrings.TotalSweepLabel}" 
+                                             IsTabStop="False"
+                                             IsChecked="{Binding Path=SelectedDistanceType, 
+                                                                 Converter={StaticResource radioButtonToEnumConverter}, 
+                                                                 ConverterParameter=TotalSweep}"/>
+
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                </Grid>
+
+            </TabItem>
+            
+            <TabItem  Header="{x:Static resources:UIStrings.AdvancedTabLabel}"
+                      Height="21">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <StackPanel Grid.Row="0"
+                                Orientation="Vertical"
+                                Background="Gainsboro"
+                                Margin="5,2.5">
+
+                        <TextBlock Text="{x:Static resources:UIStrings.ViewNameLabel}"
+                                   Margin="10,5,10,5"
+                                   Foreground="Black"/>
+                        <TextBox x:Name="ViewNameTemplateTextBox"
+                                 Grid.Row="0"
+                                 Grid.Column="1"
+                                 Margin="10,2.5,10,10"
+                                 Height="25"
+                                 VerticalContentAlignment="Center"
+                                 GotFocus="TextBox_GotFocus">
+                            <TextBox.Text>
+                                <Binding Path="ViewNameTemplate"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+                    
+                </Grid>
+            </TabItem>
+            
+        </TabControl>
+
+
     </Grid>
 </Window>

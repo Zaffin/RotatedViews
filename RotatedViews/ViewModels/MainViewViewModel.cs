@@ -34,6 +34,8 @@
 
         private DistanceType selectedDistanceType;
 
+        private string viewNameTemplate;
+
         #endregion
 
         #region Public Properties
@@ -98,6 +100,16 @@
             }
         }
 
+        public string ViewNameTemplate
+        {
+            get => this.viewNameTemplate;
+            set
+            {
+                this.viewNameTemplate = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Construction
@@ -120,6 +132,8 @@
             this.RotationAngle = 45.0;
 
             this.SelectedDistanceType = DistanceType.AngleBetween;
+
+            this.ViewNameTemplate = "<NAME> about <AXIS> by <ANGLE>deg";
         }
 
         #endregion
@@ -144,7 +158,8 @@
                                            SelectedViewAxis,
                                            NumberOfViews,
                                            RotationAngle,
-                                           SelectedDistanceType);
+                                           SelectedDistanceType,
+                                           ViewNameTemplate);
 
             RefreshViewList();
         }
@@ -157,7 +172,8 @@
                                            SelectedViewAxis, 
                                            NumberOfViews, 
                                            RotationAngle,
-                                           SelectedDistanceType);
+                                           SelectedDistanceType,
+                                           ViewNameTemplate);
 
             view?.Close();
         }

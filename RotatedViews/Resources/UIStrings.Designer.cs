@@ -61,6 +61,15 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced.
+        /// </summary>
+        public static string AdvancedTabLabel {
+            get {
+                return ResourceManager.GetString("AdvancedTabLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Angle bet_ween.
         /// </summary>
         public static string AngleBetweenLabel {
@@ -93,6 +102,15 @@ namespace RotatedViews.Resources {
         public static string ApplyToolTipTitle {
             get {
                 return ResourceManager.GetString("ApplyToolTipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Basic.
+        /// </summary>
+        public static string BasicTabLabel {
+            get {
+                return ResourceManager.GetString("BasicTabLabel", resourceCulture);
             }
         }
         
@@ -246,6 +264,15 @@ namespace RotatedViews.Resources {
         public static string TotalSweepLabel {
             get {
                 return ResourceManager.GetString("TotalSweepLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Name Template.
+        /// </summary>
+        public static string ViewNameLabel {
+            get {
+                return ResourceManager.GetString("ViewNameLabel", resourceCulture);
             }
         }
     }

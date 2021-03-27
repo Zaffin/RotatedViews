@@ -7,6 +7,6 @@ namespace RotatedViews.Services
 {
     public interface IViewService
     {
-        void CreateRotatedViews(MCView View, ViewAxis selectedAxis, int Number, double Angle, DistanceType distanceType);
+        void CreateRotatedViews(MCView View, ViewAxis selectedAxis, int Number, double Angle, DistanceType distanceType, string planeNameTemplate);
     }
 }
