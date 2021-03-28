@@ -68,6 +68,7 @@ namespace RotatedViews.Services
                     ViewName = BuildViewNameFromTemplate(view.ViewName,
                                                          rotationAxis.Label,
                                                          angle.ToString(),
+                                                         instance.ToString(),
                                                          viewNameTemplate),
 
                     ViewOrigin = view.ViewOrigin,
@@ -82,7 +83,7 @@ namespace RotatedViews.Services
             }
         }
 
-        private string BuildViewNameFromTemplate(string viewName, string axisLabel, string angle, string template)
+        private string BuildViewNameFromTemplate(string viewName, string axisLabel, string angle, string instance,  string template)
         {
             var name = string.Empty;
 
@@ -90,7 +91,8 @@ namespace RotatedViews.Services
             {
                 {@"<NAME>", viewName},
                 {@"<AXIS>", axisLabel},
-                {@"<ANGLE>", angle}
+                {@"<ANGLE>", angle},
+                {@"<INSTANCE>", instance}
             };
 
             var regex = new Regex(string.Join("|", replacementMap.Keys));

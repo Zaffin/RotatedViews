@@ -196,6 +196,15 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset to default.
+        /// </summary>
+        public static string ResetToDefaultHeader {
+            get {
+                return ResourceManager.GetString("ResetToDefaultHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rotation Axis:.
         /// </summary>
         public static string RotationAxisLabel {
@@ -228,6 +237,15 @@ namespace RotatedViews.Resources {
         public static string RotationAxisZLabel {
             get {
                 return ResourceManager.GetString("RotationAxisZLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save as default.
+        /// </summary>
+        public static string SaveAsDefaultHeader {
+            get {
+                return ResourceManager.GetString("SaveAsDefaultHeader", resourceCulture);
             }
         }
         

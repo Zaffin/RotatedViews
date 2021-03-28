@@ -1,5 +1,9 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RotatedViews.Properties" GeneratedClassName="Settings">
   <Profiles />
-  <Settings />
+  <Settings>
+    <Setting Name="defaultViewNameTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">[&lt;INSTANCE&gt;]&lt;NAME&gt; about &lt;AXIS&gt; by &lt;ANGLE&gt;deg</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

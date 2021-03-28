@@ -162,6 +162,9 @@
   <data name="PositiveIntegerRuleLabel" xml:space="preserve">
     <value>Number must be a positive integer</value>
   </data>
+  <data name="ResetToDefaultHeader" xml:space="preserve">
+    <value>Reset to default</value>
+  </data>
   <data name="RotationAxisLabel" xml:space="preserve">
     <value>Rotation Axis:</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="RotationAxisZLabel" xml:space="preserve">
     <value>_Z</value>
+  </data>
+  <data name="SaveAsDefaultHeader" xml:space="preserve">
+    <value>Save as default</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
     <value>Settings</value>

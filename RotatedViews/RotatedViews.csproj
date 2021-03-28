@@ -96,9 +96,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UIStrings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\ISettingsService.cs" />
     <Compile Include="Services\IViewService.cs" />
     <Compile Include="Services\IMastercamService.cs" />
     <Compile Include="Services\MastercamService.cs" />
+    <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Services\ViewService.cs" />
     <Compile Include="ValidationRules\PositiveIntegerRule.cs" />
     <Compile Include="ValidationRules\DoubleRule.cs" />
@@ -147,6 +149,11 @@
   <ItemGroup>
     <Content Include="Resources\Assets\RotateView16.png" />
     <Content Include="Resources\Assets\RotateView32.png" />
+    <Resource Include="Views\Icons\Copy24.png" />
+    <Resource Include="Views\Icons\Cut24.png" />
+    <Resource Include="Views\Icons\Paste24.png" />
+    <Resource Include="Views\Icons\Reset24.png" />
+    <Resource Include="Views\Icons\Save24.png" />
     <Resource Include="Views\Icons\Refresh24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

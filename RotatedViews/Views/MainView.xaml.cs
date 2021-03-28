@@ -15,7 +15,9 @@ namespace RotatedViews.Views
         public MainView()
         {
             InitializeComponent();
-            this.DataContext = new MainViewViewModel(new MastercamService(), new ViewService());
+            this.DataContext = new MainViewViewModel(new MastercamService(), 
+                                                     new ViewService(), 
+                                                     new SettingsService());
         }
 
         private void TitleLabel_MouseDown(object sender, MouseButtonEventArgs e)

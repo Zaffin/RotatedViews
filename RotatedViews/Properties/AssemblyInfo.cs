@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("RotatedViews")]
 [assembly: AssemblyDescription("A Simple add-in to rotate views")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Zaffin_D")]
+[assembly: AssemblyCompany("Zaffin_D; www.zaffind.com")]
 [assembly: AssemblyProduct("Rotate View")]
 [assembly: AssemblyCopyright("©2021 Zaffin_D")]
 [assembly: AssemblyTrademark("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.1.0")]
-[assembly: AssemblyFileVersion("1.0.1.0")]
+[assembly: AssemblyVersion("1.0.5.0")]
+[assembly: AssemblyFileVersion("1.0.5.0")]

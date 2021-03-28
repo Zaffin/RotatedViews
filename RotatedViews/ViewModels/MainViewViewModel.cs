@@ -22,6 +22,8 @@
 
         private readonly IViewService viewService;
 
+        private readonly ISettingsService settingsService;
+
         private List<MCView> views;
 
         private MCView selectedView;
@@ -114,15 +116,17 @@
 
         #region Construction
 
-        public MainViewViewModel(IMastercamService mastercamService, IViewService viewService)
+        public MainViewViewModel(IMastercamService mastercamService, IViewService viewService, ISettingsService settingsService)
         {
             this.mastercamService = mastercamService;
             this.viewService = viewService;
+            this.settingsService = settingsService;
 
             this.ApplyCommand = new DelegateCommand(OnApplyCommand);
             this.OkCommand = new DelegateCommand(OnOkCommand);
             this.CancelCommand = new DelegateCommand(OnCancelCommand);
-            this.RefreshCommand = new DelegateCommand(OnRefreshCommand);
+            this.SaveCommand = new DelegateCommand(OnSaveCommand);
+            this.ResetCommand = new DelegateCommand(OnResetCommand);
 
             RefreshViewList(true);
 
@@ -133,7 +137,7 @@
 
             this.SelectedDistanceType = DistanceType.AngleBetween;
 
-            this.ViewNameTemplate = "<NAME> about <AXIS> by <ANGLE>deg";
+            this.ViewNameTemplate = settingsService.GetDefaultViewNameTemplate();
         }
 
         #endregion
@@ -146,7 +150,9 @@
 
         public ICommand CancelCommand { get; }
 
-        public ICommand RefreshCommand { get; }
+        public ICommand SaveCommand { get; }
+
+        public ICommand ResetCommand { get; }
 
         #endregion
 
@@ -185,9 +191,14 @@
             view?.Close();
         }
 
-        private void OnRefreshCommand(object parameter)
+        private void OnSaveCommand(object parameter)
         {
-            RefreshViewList();
+            settingsService.SaveViewNameTemplateAsDefault(ViewNameTemplate);
+        }
+
+        private void OnResetCommand(object parameter)
+        {
+            ViewNameTemplate = settingsService.GetDefaultViewNameTemplate();
         }
 
         private void RefreshViewList(bool isUsingConstructionView = false)
