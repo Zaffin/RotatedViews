@@ -36,20 +36,23 @@ namespace RotatedViews.Services
                     return new RotationAxis
                     {
                         Axis = viewMatrix.Row1,
-                        Label = "X"
+                        LinearLabel = "X",
+                        RotaryLabel = "A"
                     };
 
                 case ViewAxis.YAxis:
                     return new RotationAxis
                     {
                         Axis = viewMatrix.Row2,
-                        Label = "Y"
+                        LinearLabel = "Y",
+                        RotaryLabel = "B"
                     };
                 case ViewAxis.ZAxis:
                     return new RotationAxis
                     {
                         Axis = viewMatrix.Row3,
-                        Label = "Z"
+                        LinearLabel = "Z",
+                        RotaryLabel = "C"
                     };
                 default:
                     return new RotationAxis();
@@ -66,7 +69,8 @@ namespace RotatedViews.Services
                 var rotatedView = new MCView
                 {
                     ViewName = BuildViewNameFromTemplate(view.ViewName,
-                                                         rotationAxis.Label,
+                                                         rotationAxis.LinearLabel,
+                                                         rotationAxis.RotaryLabel,
                                                          angle.ToString(),
                                                          instance.ToString(),
                                                          viewNameTemplate),
@@ -83,14 +87,15 @@ namespace RotatedViews.Services
             }
         }
 
-        private string BuildViewNameFromTemplate(string viewName, string axisLabel, string angle, string instance,  string template)
+        private string BuildViewNameFromTemplate(string viewName, string linAxisLabel, string rotAxisLabel, string angle, string instance,  string template)
         {
             var name = string.Empty;
 
             var replacementMap = new Dictionary<string, string>()
             {
                 {@"<NAME>", viewName},
-                {@"<AXIS>", axisLabel},
+                {@"<LINAXIS>", linAxisLabel},
+                {@"<ROTAXIS>", rotAxisLabel},
                 {@"<ANGLE>", angle},
                 {@"<INSTANCE>", instance}
             };

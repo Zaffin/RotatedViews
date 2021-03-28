@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="defaultViewNameTemplate" Type="System.String" Scope="User">
-      <Value Profile="(Default)">[&lt;INSTANCE&gt;]&lt;NAME&gt; about &lt;AXIS&gt; by &lt;ANGLE&gt;deg</Value>
+      <Value Profile="(Default)">[&lt;INSTANCE&gt;]&lt;NAME&gt; about &lt;LINAXIS&gt; by &lt;ANGLE&gt;deg</Value>
     </Setting>
   </Settings>
 </SettingsFile>

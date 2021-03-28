@@ -68,7 +68,7 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Background" Value="{StaticResource TabItem.Selected.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Brush.Transparent}"/>
-            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -148,6 +148,7 @@
                MouseDown="TitleLabel_MouseDown"/>
 
         <StackPanel Grid.Row="1"
+                    Grid.RowSpan="2"
                     FlowDirection="RightToLeft"
                     Orientation="Horizontal"
                     Background="{StaticResource Brush.DarkCharcoal}">
@@ -155,6 +156,7 @@
             <Button x:Name="CancelButton"
                     Height="35"
                     Width="35"
+                    VerticalAlignment="Top"
                     Margin="5,0,0,0"
                     Background="Transparent"
                     IsCancel="True"
@@ -188,6 +190,7 @@
             <Button x:Name="OkButton"
                     Height="35"
                     Width="35"
+                    VerticalAlignment="Top"
                     Background="Transparent"
                     IsDefault="True"
                     Command="{Binding OkCommand}"
@@ -220,6 +223,7 @@
             <Button x:Name="ApplyButton"
                     Height="35"
                     Width="35"
+                    VerticalAlignment="Top"
                     Background="Transparent"
                     Command="{Binding ApplyCommand}">
                 <Button.Template>

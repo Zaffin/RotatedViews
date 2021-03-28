@@ -25,7 +25,7 @@ namespace RotatedViews.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("[<INSTANCE>]<NAME> about <AXIS> by <ANGLE>deg")]
+        [global::System.Configuration.DefaultSettingValueAttribute("[<INSTANCE>]<NAME> about <LINAXIS> by <ANGLE>deg")]
         public string defaultViewNameTemplate {
             get {
                 return ((string)(this["defaultViewNameTemplate"]));

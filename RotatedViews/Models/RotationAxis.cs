@@ -6,18 +6,22 @@ namespace RotatedViews.Models
     {
         public Point3D Axis { get; set; }
 
-        public string Label { get; set; }
+        public string LinearLabel { get; set; }
+
+        public string RotaryLabel { get; set; }
 
         public RotationAxis()
         {
             Axis = new Point3D(0, 0, 1);
-            Label = "WorldZ";
+            LinearLabel = "WorldZ";
+            RotaryLabel = "C";
         }
 
-        public RotationAxis(Point3D axis, string label)
+        public RotationAxis(Point3D axis, string linearLabel, string rotaryLabel)
         {
             Axis = axis;
-            Label = label;
+            LinearLabel = linearLabel;
+            RotaryLabel = rotaryLabel;
         }
     }
 }
