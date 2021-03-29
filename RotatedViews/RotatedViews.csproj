@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Converters\RadioButtonToEnumConverter.cs" />
+    <Compile Include="ExtensionMethods\Point3DExtensionMethods.cs" />
     <Compile Include="Models\DistanceType.cs" />
     <Compile Include="Models\RotationAxis.cs" />
     <Compile Include="Models\ViewAxis.cs" />

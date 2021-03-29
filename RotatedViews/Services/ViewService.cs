@@ -6,6 +6,7 @@ using Mastercam.Math;
 using Mastercam.Database;
 
 using RotatedViews.Models;
+using RotatedViews.ExtensionMethods;
 
 
 namespace RotatedViews.Services
@@ -69,10 +70,11 @@ namespace RotatedViews.Services
                 var rotatedView = new MCView
                 {
                     ViewName = BuildViewNameFromTemplate(view.ViewName,
+                                                         view.ViewOrigin.ToString(),
                                                          rotationAxis.LinearLabel,
                                                          rotationAxis.RotaryLabel,
-                                                         angle.ToString(),
                                                          instance.ToString(),
+                                                         angle.ToString(),
                                                          viewNameTemplate),
 
                     ViewOrigin = view.ViewOrigin,
@@ -87,17 +89,20 @@ namespace RotatedViews.Services
             }
         }
 
-        private string BuildViewNameFromTemplate(string viewName, string linAxisLabel, string rotAxisLabel, string angle, string instance,  string template)
+        private string BuildViewNameFromTemplate(string viewName, string origin, string linAxisLabel, string rotAxisLabel, string instance, string angle, string template)
         {
             var name = string.Empty;
 
             var replacementMap = new Dictionary<string, string>()
             {
                 {@"<NAME>", viewName},
+                {@"<ORIGIN>", origin},
                 {@"<LINAXIS>", linAxisLabel},
                 {@"<ROTAXIS>", rotAxisLabel},
-                {@"<ANGLE>", angle},
-                {@"<INSTANCE>", instance}
+                {@"<INSTANCE>", instance},
+                {@"<ANGLE>", angle}
+                
+                
             };
 
             var regex = new Regex(string.Join("|", replacementMap.Keys));
@@ -117,37 +122,25 @@ namespace RotatedViews.Services
             {
                 axisOne = rotationAxis;
 
-                axisTwo = VectorManager.Rotate(matrix.Row2,  
-                                               rotationAxis, 
-                                               VectorManager.DegreesToRadians(angle));
+                axisTwo = matrix.Row2.RotateAboutAxis(rotationAxis, angle);
 
-                axisThree = VectorManager.Rotate(matrix.Row3,
-                                                 rotationAxis,
-                                                 VectorManager.DegreesToRadians(angle));
+                axisThree = VectorManager.Cross(axisOne, axisTwo);
             }
             else if (matrix.Row2 == rotationAxis)
             {
-                axisOne = VectorManager.Rotate(matrix.Row1,
-                                               rotationAxis,
-                                               VectorManager.DegreesToRadians(angle));
+                axisOne = matrix.Row1.RotateAboutAxis(rotationAxis, angle);
 
                 axisTwo = rotationAxis;
 
-                axisThree = VectorManager.Rotate(matrix.Row3,
-                                                 rotationAxis,
-                                                 VectorManager.DegreesToRadians(angle));
+                axisThree = VectorManager.Cross(axisOne, axisTwo);
             }
             else
             {
-                axisOne = VectorManager.Rotate(matrix.Row1,
-                                               rotationAxis,
-                                               VectorManager.DegreesToRadians(angle));
-
-                axisTwo = VectorManager.Rotate(matrix.Row2,
-                                               rotationAxis,
-                                               VectorManager.DegreesToRadians(angle));
+                axisOne = matrix.Row1.RotateAboutAxis(rotationAxis, angle);
 
                 axisThree = rotationAxis;
+
+                axisTwo = VectorManager.Cross(axisThree, axisOne);
             }
 
             return new Matrix3D
