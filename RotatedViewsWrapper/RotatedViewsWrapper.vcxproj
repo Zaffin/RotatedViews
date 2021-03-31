@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{4B2D35B4-1AF0-47A5-9640-108FF9FB60E0}</ProjectGuid>
+    <RootNamespace>RotatedViewsWrapper</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <TargetFrameworkVersion>4.7.2</TargetFrameworkVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CLRSupport>true</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>true</CLRSupport>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="SDK.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="SDK.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>x64\$(Configuration)\</OutDir>
+    <IntDir>x64\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetExt>.dll</TargetExt>
+    <OutDir>x64\$(Configuration)\</OutDir>
+    <IntDir>x64\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SDKDir);$(SDKDir)interfaces\gui;$(SDKDir)interfaces\guibase;$(SDKDir)interfaces\corebase;$(SDKDir)interfaces\core;$(SDKDir)interfaces\control;$(SDKDir)interfaces\geomsld;$(SDKDir)interfaces\lathe;$(SDKDir)interfaces\machinedef;$(SDKDir)interfaces\mill;$(SDKDir)interfaces\post;$(SDKDir)interfaces\msurf;$(SDKDir)interfaces\wire;$(SDKDir)interfaces\uictrls;$(SDKDir)interfaces\tlcore;$(SDKDir)interfaces\tool;$(SDKDir)interfaces\math;$(SDKDir)interfaces\curvesurfgeom;$(SDKDir)interfaces\systypes;$(SDKDir)interfaces\bnci;$(SDKDir)interfaces\Observable;$(SDKDir)NGP\Core\gaf\base\misc\h;$(SDKDir)NGP\Core\h;$(SDKDir)3rdParty\BCGCBPro\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>true</CompileAsManaged>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SDKDir)x64\release;$(SDKDir)3rdParty\BCGCBPro\libx64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>MCRouter.lib;MCRtClasses.lib;MCTool.lib;MCUI5Ax.lib;MCVerify.lib;MCWire.lib;RibbonUI.lib;SysTypes.lib;TlCore.lib;ToolNetApi.lib;TPFiveAx.lib;TPGeom.lib;TPIFTools.lib;UICtrls.lib;VistaFileDialogs.lib;bnci.lib;Mastercam.lib;Math.lib;MCCAD.lib;MCCADUtil.lib;MCCE.lib;MCControl.lib;MCCore.lib;MCCoreBase.lib;MCCurveSurfGeom.lib;MCGeomSld.lib;MCGuiBase.lib;MCIk.lib;McIPC.lib;MCKernel.lib;MCLathe.lib;MCMachineDef.lib;MCMill.lib;MCMpParameters.lib;MCMSurf.lib;MCMultiax.lib;MCOReader.lib;MCPost.lib;MCProbe.lib;MCPrvVerFile.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SDKDir);$(SDKDir)interfaces\gui;$(SDKDir)interfaces\guibase;$(SDKDir)interfaces\corebase;$(SDKDir)interfaces\core;$(SDKDir)interfaces\control;$(SDKDir)interfaces\geomsld;$(SDKDir)interfaces\lathe;$(SDKDir)interfaces\machinedef;$(SDKDir)interfaces\mill;$(SDKDir)interfaces\post;$(SDKDir)interfaces\msurf;$(SDKDir)interfaces\wire;$(SDKDir)interfaces\uictrls;$(SDKDir)interfaces\tlcore;$(SDKDir)interfaces\tool;$(SDKDir)interfaces\math;$(SDKDir)interfaces\curvesurfgeom;$(SDKDir)interfaces\systypes;$(SDKDir)interfaces\bnci;$(SDKDir)interfaces\Observable;$(SDKDir)NGP\Core\gaf\base\misc\h;$(SDKDir)NGP\Core\h;$(SDKDir)3rdParty\BCGCBPro\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>$(SDKDir)x64\debug;$(SDKDir)3rdParty\BCGCBPro\libx64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>MCRouter.lib;MCRtClasses.lib;MCTool.lib;MCUI5Ax.lib;MCVerify.lib;MCWire.lib;RibbonUI.lib;SysTypes.lib;TlCore.lib;ToolNetApi.lib;TPFiveAx.lib;TPGeom.lib;TPIFTools.lib;UICtrls.lib;VistaFileDialogs.lib;bnci.lib;Mastercam.lib;Math.lib;MCCAD.lib;MCCADUtil.lib;MCCE.lib;MCControl.lib;MCCore.lib;MCCoreBase.lib;MCCurveSurfGeom.lib;MCGeomSld.lib;MCGuiBase.lib;MCIk.lib;McIPC.lib;MCKernel.lib;MCLathe.lib;MCMachineDef.lib;MCMill.lib;MCMpParameters.lib;MCMSurf.lib;MCMultiax.lib;MCOReader.lib;MCPost.lib;MCProbe.lib;MCPrvVerFile.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="GraphicsService.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GraphicsService.cpp" />
+    <ClCompile Include="pch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SDK.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="NETHook3_0">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Mastercam 2021\Mastercam\NETHook3_0.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RotatedViews</RootNamespace>
     <AssemblyName>RotatedViews</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -72,6 +73,7 @@
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Converters\RadioButtonToEnumConverter.cs" />
     <Compile Include="ExtensionMethods\Point3DExtensionMethods.cs" />
+    <Compile Include="Models\DisplayableView.cs" />
     <Compile Include="Models\DistanceType.cs" />
     <Compile Include="Models\RotationAxis.cs" />
     <Compile Include="Models\ViewAxis.cs" />
@@ -99,8 +101,6 @@
     </Compile>
     <Compile Include="Services\ISettingsService.cs" />
     <Compile Include="Services\IViewService.cs" />
-    <Compile Include="Services\IMastercamService.cs" />
-    <Compile Include="Services\MastercamService.cs" />
     <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Services\ViewService.cs" />
     <Compile Include="ValidationRules\PositiveIntegerRule.cs" />
@@ -156,6 +156,12 @@
     <Resource Include="Views\Icons\Reset24.png" />
     <Resource Include="Views\Icons\Save24.png" />
     <Resource Include="Views\Icons\Refresh24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RotatedViewsWrapper\RotatedViewsWrapper.vcxproj">
+      <Project>{4b2d35b4-1af0-47a5-9640-108ff9fb60e0}</Project>
+      <Name>RotatedViewsWrapper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

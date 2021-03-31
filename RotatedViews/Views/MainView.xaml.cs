@@ -1,8 +1,11 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+
 using RotatedViews.Services;
 using RotatedViews.ViewModel;
+
+using GraphicsServiceWrapper;
 
 
 namespace RotatedViews.Views
@@ -15,9 +18,9 @@ namespace RotatedViews.Views
         public MainView()
         {
             InitializeComponent();
-            this.DataContext = new MainViewViewModel(new MastercamService(), 
-                                                     new ViewService(), 
-                                                     new SettingsService());
+            this.DataContext = new MainViewViewModel(new ViewService(), 
+                                                     new SettingsService(),
+                                                     new GraphicsService());
         }
 
         private void TitleLabel_MouseDown(object sender, MouseButtonEventArgs e)

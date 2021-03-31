@@ -7,26 +7,26 @@
     using System.Windows.Input;
     using System.Runtime.CompilerServices;
 
-    using Mastercam.Database;
-
     using RotatedViews.Services;
     using RotatedViews.Commands;
     using RotatedViews.Models;
+
+    using GraphicsServiceWrapper;
 
 
     public class MainViewViewModel : INotifyPropertyChanged
     {
         #region Private Fields
 
-        private readonly IMastercamService mastercamService;
-
         private readonly IViewService viewService;
 
         private readonly ISettingsService settingsService;
 
-        private List<MCView> views;
+        private readonly GraphicsService graphicsService;
 
-        private MCView selectedView;
+        private List<DisplayableView> views;
+
+        private DisplayableView selectedView;
 
         private ViewAxis selectedViewAxis;
 
@@ -42,7 +42,7 @@
 
         #region Public Properties
 
-        public List<MCView> Views
+        public List<DisplayableView> Views
         {
             get => this.views;
             set
@@ -52,12 +52,17 @@
             }
         }
 
-        public MCView SelectedView
+        public DisplayableView SelectedView
         {
             get => this.selectedView;
             set
             {
+                EraseSelectedView();
+
                 this.selectedView = value;
+
+                SelectedView.Display(graphicsService.DrawView);
+
                 OnPropertyChanged();
             }
         }
@@ -116,11 +121,13 @@
 
         #region Construction
 
-        public MainViewViewModel(IMastercamService mastercamService, IViewService viewService, ISettingsService settingsService)
+        public MainViewViewModel(IViewService viewService, 
+                                 ISettingsService settingsService, 
+                                 GraphicsService graphicsService)
         {
-            this.mastercamService = mastercamService;
             this.viewService = viewService;
             this.settingsService = settingsService;
+            this.graphicsService = graphicsService;
 
             this.ApplyCommand = new DelegateCommand(OnApplyCommand);
             this.OkCommand = new DelegateCommand(OnOkCommand);
@@ -138,6 +145,7 @@
             this.SelectedDistanceType = DistanceType.AngleBetween;
 
             this.ViewNameTemplate = settingsService.GetDefaultViewNameTemplate();
+
         }
 
         #endregion
@@ -160,7 +168,7 @@
 
         private void OnApplyCommand(object parameter)
         {
-            viewService.CreateRotatedViews(SelectedView,
+            viewService.CreateRotatedViews(SelectedView.Data,
                                            SelectedViewAxis,
                                            NumberOfViews,
                                            RotationAngle,
@@ -174,12 +182,14 @@
         {
             var view = (Window)parameter;
 
-            viewService.CreateRotatedViews(SelectedView,
+            viewService.CreateRotatedViews(SelectedView.Data,
                                            SelectedViewAxis, 
                                            NumberOfViews, 
                                            RotationAngle,
                                            SelectedDistanceType,
                                            ViewNameTemplate);
+
+            EraseSelectedView();
 
             view?.Close();
         }
@@ -187,6 +197,8 @@
         private void OnCancelCommand(object parameter)
         {
             var view = (Window)parameter;
+
+            EraseSelectedView();
 
             view?.Close();
         }
@@ -203,15 +215,26 @@
 
         private void RefreshViewList(bool isUsingConstructionView = false)
         {
-            var selectedViewID = SelectedView?.ViewID;
+            var selectedViewID = SelectedView?.Data?.ViewID;
 
             if (isUsingConstructionView)
             {
-                selectedViewID = mastercamService.GetCurrentConstructionView().ViewID;
+                selectedViewID = viewService.GetCurrentConstructionView().ViewID;
             }
             
-            this.Views = this.mastercamService.GetViews();
-            this.SelectedView = Views.Find(v => v.ViewID == selectedViewID);
+            this.Views = this.viewService.GetDisplayableViews();
+            this.SelectedView = Views.Find(v => v.Data.ViewID == selectedViewID);
+        }
+
+        private void EraseSelectedView()
+        {
+            if (SelectedView != null)
+            {
+                if (SelectedView.IsDisplayed)
+                {
+                    SelectedView.Erase(graphicsService.EraseView);
+                }
+            }
         }
 
         #endregion

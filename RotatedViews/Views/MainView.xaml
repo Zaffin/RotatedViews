@@ -281,7 +281,7 @@
                                  IsTabStop="False"
                                  DockPanel.Dock="Bottom"
                                  ItemsSource="{Binding Views}"
-                                 DisplayMemberPath="ViewName"
+                                 DisplayMemberPath="Data.ViewName"
                                  SelectedValue="{Binding SelectedView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  IsSynchronizedWithCurrentItem="True"/>
 

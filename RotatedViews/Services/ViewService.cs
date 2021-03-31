@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
+using Mastercam.IO;
 using Mastercam.Math;
+using Mastercam.Support;
 using Mastercam.Database;
 
 using RotatedViews.Models;
@@ -27,6 +29,24 @@ namespace RotatedViews.Services
             {
                 RotateView(view, rotationAxis, number, angle, viewNameTemplate);
             }
+        }
+
+        public MCView GetCurrentConstructionView()
+        {
+            return ViewManager.CPlane;
+        }
+
+        public List<DisplayableView> GetDisplayableViews()
+        {
+            var views = SearchManager.GetViews();
+            var displayableViews = new List<DisplayableView>();
+
+            foreach (var view in views)
+            {
+                displayableViews.Add(new DisplayableView(view));
+            }
+
+            return displayableViews;
         }
 
         private RotationAxis GetRotationAxis(ViewAxis axis, Matrix3D viewMatrix)
