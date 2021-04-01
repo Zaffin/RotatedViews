@@ -1,12 +1,14 @@
 ﻿
 namespace RotatedViews
 {
+    using System.Windows;
+    using System.Windows.Interop;
+
     using Mastercam.App;
     using Mastercam.App.Types;
     using Mastercam.Support.UI;
 
     using RotatedViews.Views;
-
 
     public class Main : NetHook3App
     {
@@ -20,9 +22,12 @@ namespace RotatedViews
         public override MCamReturn Run(int param)
         {
             var view = new MainView();
+            _ = new ModelessDialogTabs.ModelessDialogTabs(view);
 
-            var ownerWindowHandle = MastercamWindow.GetHandle().Handle;
-            _ = new System.Windows.Interop.WindowInteropHelper(view) { Owner = ownerWindowHandle };
+            var windowInteropHelper = new WindowInteropHelper(view)
+            {
+                Owner = MastercamWindow.GetHandle().Handle
+            };
 
             view.Show();
 

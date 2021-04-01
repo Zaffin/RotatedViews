@@ -9,11 +9,16 @@ GraphicsServiceWrapper::GraphicsService::GraphicsService()
 
 int GraphicsServiceWrapper::GraphicsService::DrawView(Matrix3D viewMatrix, Point3D origin)
 {
-	auto id = GrTempAddAxes(CreateNativeMatrix(viewMatrix), CreateNativePoint(origin));
+	auto nativeViewMatrix = CreateNativeMatrix(viewMatrix);
+	auto nativeOrigin = CreateNativePoint(origin);
 
-	GrTempDraw(id);
+	auto viewID = GrTempAddAxes(nativeViewMatrix, nativeOrigin);
+	//auto ArrowID = GrTempAddArrow(nativeOrigin, nativeViewMatrix[2], false, .075, 14);
 
-	return id;
+	//GrTempDraw(viewID);
+	//GrTempDraw(ArrowID);
+
+	return viewID;
 }
 
 void GraphicsServiceWrapper::GraphicsService::EraseView(int id)
