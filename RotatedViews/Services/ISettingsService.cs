@@ -10,6 +10,10 @@ namespace RotatedViews.Services
     {
         string GetDefaultViewNameTemplate();
 
+        bool GetDefaultUseExistingWorkOffsetSetting();
+
+        void SaveUseExistingWorkOffsetSettingAsDefault(bool useExistingWorkOffset);
+
         void SaveViewNameTemplateAsDefault(string viewNameTemplate);
     }
 }

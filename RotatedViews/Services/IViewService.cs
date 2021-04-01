@@ -9,7 +9,7 @@ namespace RotatedViews.Services
 {
     public interface IViewService
     {
-        void CreateRotatedViews(MCView View, ViewAxis selectedAxis, int Number, double Angle, DistanceType distanceType, string planeNameTemplate);
+        void CreateRotatedViews(MCView View, ViewAxis selectedAxis, int Number, double Angle, DistanceType distanceType, string planeNameTemplate, bool useExistingWorkoffset);
 
         MCView GetCurrentConstructionView();
 

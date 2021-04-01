@@ -180,9 +180,8 @@
                 </Button.Template>
                 <Button.ToolTip>
                     <StackPanel>
-                        <TextBlock FontWeight="Bold" 
+                        <TextBlock FontWeight="Bold"
                                    Text="{x:Static resources:UIStrings.CloseToolTipTitle}"/>
-                        <TextBlock Text="{x:Static resources:UIStrings.CloseToolTipBody}"/>
                     </StackPanel>
                 </Button.ToolTip>
             </Button>
@@ -215,7 +214,6 @@
                     <StackPanel>
                         <TextBlock FontWeight="Bold" 
                                    Text="{x:Static resources:UIStrings.OkToolTipTitle}"/>
-                        <TextBlock Text="{x:Static resources:UIStrings.OkToolTipBody}"/>
                     </StackPanel>
                 </Button.ToolTip>
             </Button>
@@ -246,7 +244,6 @@
                     <StackPanel>
                         <TextBlock FontWeight="Bold" 
                                    Text="{x:Static resources:UIStrings.ApplyToolTipTitle}"/>
-                        <TextBlock Text="{x:Static resources:UIStrings.ApplyToolTipBody}"/>
                     </StackPanel>
                 </Button.ToolTip>
             </Button>
@@ -476,13 +473,15 @@
                                 Background="Gainsboro"
                                 Margin="5,2.5">
 
-                        <TextBlock Text="{x:Static resources:UIStrings.ViewNameLabel}"
+                        <TextBlock Text="{x:Static resources:UIStrings.SettingsLabel}"
                                    Margin="10,5,10,5"
                                    Foreground="Black"/>
                         
-                        <DockPanel Margin="10,2.5,10,10"
-                                   LastChildFill="True">
-                          
+                        <StackPanel Margin="10,2.5,10,10">
+
+                            <TextBlock Text="{x:Static resources:UIStrings.ViewNameLabel}"
+                                   Foreground="Black"/>
+
                             <TextBox x:Name="ViewNameTemplateTextBox"
                                      Grid.Row="0"
                                      Grid.Column="1"                                 
@@ -536,7 +535,11 @@
                                 
                             </TextBox>
 
-                        </DockPanel>
+                            <CheckBox Content="{x:Static resources:UIStrings.UseExistingWorkOffsetLabel}"
+                                      Margin="0,10"
+                                      IsChecked="{Binding IsUseExistingWorkoffset}"/>
+
+                        </StackPanel>
                     </StackPanel>
                     
                 </Grid>

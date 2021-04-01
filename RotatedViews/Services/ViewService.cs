@@ -16,18 +16,18 @@ namespace RotatedViews.Services
     public class ViewService : IViewService
     {
 
-        public void CreateRotatedViews(MCView view, ViewAxis selectedAxis, int number, double angle, DistanceType distanceTypep, string viewNameTemplate)
+        public void CreateRotatedViews(MCView view, ViewAxis selectedAxis, int number, double angle, DistanceType distanceType, string viewNameTemplate, bool useExistingWorkOffset)
         {
             var rotationAxis = GetRotationAxis(selectedAxis, view.ViewMatrix);
 
-            if (distanceTypep == DistanceType.TotalSweep)
+            if (distanceType == DistanceType.TotalSweep)
             {
                 angle /= number;
-                RotateView(view, rotationAxis, number, angle, viewNameTemplate);
+                RotateView(view, rotationAxis, number, angle, viewNameTemplate, useExistingWorkOffset);
             }
             else
             {
-                RotateView(view, rotationAxis, number, angle, viewNameTemplate);
+                RotateView(view, rotationAxis, number, angle, viewNameTemplate, useExistingWorkOffset);
             }
         }
 
@@ -80,7 +80,7 @@ namespace RotatedViews.Services
             }
         }
 
-        private void RotateView(MCView view, RotationAxis rotationAxis, int number, double angle, string viewNameTemplate)
+        private void RotateView(MCView view, RotationAxis rotationAxis, int number, double angle, string viewNameTemplate, bool useExistingWorkOffset)
         {
             var instance = 1;
             var initialAngle = angle;
@@ -100,6 +100,11 @@ namespace RotatedViews.Services
                     ViewOrigin = view.ViewOrigin,
                     ViewMatrix = CreateMatrix(view.ViewMatrix, rotationAxis.Axis, angle)
                 };
+
+                if (useExistingWorkOffset)
+                {
+                    rotatedView.WorkOffsetNumber = view.WorkOffsetNumber;
+                }
 
                 rotatedView.Commit();
 

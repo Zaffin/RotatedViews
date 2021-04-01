@@ -286,6 +286,15 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use existing work offset.
+        /// </summary>
+        public static string UseExistingWorkOffsetLabel {
+            get {
+                return ResourceManager.GetString("UseExistingWorkOffsetLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View Name Template.
         /// </summary>
         public static string ViewNameLabel {

@@ -192,6 +192,9 @@
   <data name="TotalSweepLabel" xml:space="preserve">
     <value>Total sweep</value>
   </data>
+  <data name="UseExistingWorkOffsetLabel" xml:space="preserve">
+    <value>Use existing work offset</value>
+  </data>
   <data name="ViewNameLabel" xml:space="preserve">
     <value>View Name Template</value>
   </data>

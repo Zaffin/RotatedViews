@@ -5,5 +5,8 @@
     <Setting Name="defaultViewNameTemplate" Type="System.String" Scope="User">
       <Value Profile="(Default)">[&lt;INSTANCE&gt;]&lt;NAME&gt; about &lt;LINAXIS&gt; by &lt;ANGLE&gt;deg</Value>
     </Setting>
+    <Setting Name="defaultUseExistingWorkOffset" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -38,6 +38,8 @@
 
         private string viewNameTemplate;
 
+        private bool isUseExistingWorkoffset;
+
         #endregion
 
         #region Public Properties
@@ -117,6 +119,16 @@
             }
         }
 
+        public bool IsUseExistingWorkoffset
+        {
+            get => this.isUseExistingWorkoffset;
+            set
+            {
+                this.isUseExistingWorkoffset = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Construction
@@ -146,6 +158,8 @@
 
             this.ViewNameTemplate = settingsService.GetDefaultViewNameTemplate();
 
+            this.IsUseExistingWorkoffset = settingsService.GetDefaultUseExistingWorkOffsetSetting();
+
         }
 
         #endregion
@@ -173,9 +187,12 @@
                                            NumberOfViews,
                                            RotationAngle,
                                            SelectedDistanceType,
-                                           ViewNameTemplate);
+                                           ViewNameTemplate,
+                                           IsUseExistingWorkoffset);
 
             RefreshViewList();
+
+            settingsService.SaveUseExistingWorkOffsetSettingAsDefault(IsUseExistingWorkoffset);
         }
 
         private void OnOkCommand(object parameter)
@@ -187,9 +204,12 @@
                                            NumberOfViews, 
                                            RotationAngle,
                                            SelectedDistanceType,
-                                           ViewNameTemplate);
+                                           ViewNameTemplate,
+                                           IsUseExistingWorkoffset);
 
             EraseSelectedView();
+
+            settingsService.SaveUseExistingWorkOffsetSettingAsDefault(IsUseExistingWorkoffset);
 
             view?.Close();
         }

@@ -8,9 +8,20 @@ namespace RotatedViews.Services
 {
     public class SettingsService : ISettingsService
     {
+        public bool GetDefaultUseExistingWorkOffsetSetting()
+        {
+            return Properties.Settings.Default.defaultUseExistingWorkOffset;
+        }
+
         public string GetDefaultViewNameTemplate()
         {
             return Properties.Settings.Default.defaultViewNameTemplate;
+        }
+
+        public void SaveUseExistingWorkOffsetSettingAsDefault(bool useExistingWorkOffset)
+        {
+            Properties.Settings.Default.defaultUseExistingWorkOffset = useExistingWorkOffset;
+            Save();
         }
 
         public void SaveViewNameTemplateAsDefault(string viewNameTemplate)
@@ -22,7 +33,6 @@ namespace RotatedViews.Services
         private void Save()
         {
             Properties.Settings.Default.Save();
-
         }
     }
 }
