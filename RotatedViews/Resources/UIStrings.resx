@@ -121,16 +121,16 @@
     <value>Advanced</value>
   </data>
   <data name="AngleBetweenLabel" xml:space="preserve">
-    <value>Angle bet_ween</value>
+    <value>Angle between</value>
   </data>
   <data name="AngleLabel" xml:space="preserve">
-    <value>An_gle:</value>
+    <value>Angle:</value>
   </data>
   <data name="ApplyToolTipBody" xml:space="preserve">
     <value>Apply the current rotation</value>
   </data>
   <data name="ApplyToolTipTitle" xml:space="preserve">
-    <value>Apply - Shift+Enter</value>
+    <value>Apply</value>
   </data>
   <data name="BasicTabLabel" xml:space="preserve">
     <value>Basic</value>
@@ -139,7 +139,7 @@
     <value>Close Rotate View</value>
   </data>
   <data name="CloseToolTipTitle" xml:space="preserve">
-    <value>Close - Escape</value>
+    <value>Close</value>
   </data>
   <data name="DistanceLabel" xml:space="preserve">
     <value>Distance:</value>
@@ -151,13 +151,13 @@
     <value>Instances</value>
   </data>
   <data name="NumberLabel" xml:space="preserve">
-    <value>_Number:</value>
+    <value>Number:</value>
   </data>
   <data name="OkToolTipBody" xml:space="preserve">
     <value>Apply the current rotation and close Rotate View</value>
   </data>
   <data name="OkToolTipTitle" xml:space="preserve">
-    <value>Ok - Enter</value>
+    <value>Ok</value>
   </data>
   <data name="PositiveIntegerRuleLabel" xml:space="preserve">
     <value>Number must be a positive integer</value>
@@ -169,13 +169,13 @@
     <value>Rotation Axis:</value>
   </data>
   <data name="RotationAxisXLabel" xml:space="preserve">
-    <value>_X</value>
+    <value>X</value>
   </data>
   <data name="RotationAxisYLabel" xml:space="preserve">
-    <value>_Y</value>
+    <value>Y</value>
   </data>
   <data name="RotationAxisZLabel" xml:space="preserve">
-    <value>_Z</value>
+    <value>Z</value>
   </data>
   <data name="SaveAsDefaultHeader" xml:space="preserve">
     <value>Save as default</value>
@@ -190,7 +190,7 @@
     <value>Rotate View</value>
   </data>
   <data name="TotalSweepLabel" xml:space="preserve">
-    <value>Total _sweep</value>
+    <value>Total sweep</value>
   </data>
   <data name="ViewNameLabel" xml:space="preserve">
     <value>View Name Template</value>

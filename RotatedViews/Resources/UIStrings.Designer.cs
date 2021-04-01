@@ -19,7 +19,7 @@ namespace RotatedViews.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class UIStrings {
@@ -70,7 +70,7 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Angle bet_ween.
+        ///   Looks up a localized string similar to Angle between.
         /// </summary>
         public static string AngleBetweenLabel {
             get {
@@ -79,7 +79,7 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An_gle:.
+        ///   Looks up a localized string similar to Angle:.
         /// </summary>
         public static string AngleLabel {
             get {
@@ -97,7 +97,7 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply - Shift+Enter.
+        ///   Looks up a localized string similar to Apply.
         /// </summary>
         public static string ApplyToolTipTitle {
             get {
@@ -124,7 +124,7 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Close - Escape.
+        ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string CloseToolTipTitle {
             get {
@@ -160,7 +160,7 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Number:.
+        ///   Looks up a localized string similar to Number:.
         /// </summary>
         public static string NumberLabel {
             get {
@@ -178,7 +178,7 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ok - Enter.
+        ///   Looks up a localized string similar to Ok.
         /// </summary>
         public static string OkToolTipTitle {
             get {
@@ -214,7 +214,7 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _X.
+        ///   Looks up a localized string similar to X.
         /// </summary>
         public static string RotationAxisXLabel {
             get {
@@ -223,7 +223,7 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Y.
+        ///   Looks up a localized string similar to Y.
         /// </summary>
         public static string RotationAxisYLabel {
             get {
@@ -232,7 +232,7 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Z.
+        ///   Looks up a localized string similar to Z.
         /// </summary>
         public static string RotationAxisZLabel {
             get {
@@ -277,7 +277,7 @@ namespace RotatedViews.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total _sweep.
+        ///   Looks up a localized string similar to Total sweep.
         /// </summary>
         public static string TotalSweepLabel {
             get {

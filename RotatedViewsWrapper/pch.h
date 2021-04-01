@@ -4,7 +4,7 @@
 #define VC_EXTRALEAN            // Exclude rarely-used stuff from Windows headers
 #endif
 
-#include "targetver.h"
+//#include "targetver.h"
 #include "3DVarsDefines_CH.h" // for C_H_VERSION
 
 #if C_H_VERSION >= 2100 // Mastercam 2019 or later

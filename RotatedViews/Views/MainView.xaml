@@ -383,7 +383,6 @@
                                    Grid.Column="0"
                                    Margin="5,0"
                                    Content="{x:Static resources:UIStrings.NumberLabel}"
-                                   Target="{Binding ElementName=NumberTextBox}"
                                    VerticalAlignment="Center"/>
 
                             <TextBox x:Name="NumberTextBox"
@@ -393,7 +392,6 @@
                                      VerticalContentAlignment="Center"
                                      IsTabStop="True"
                                      TabIndex="1"
-                                     GotFocus="TextBox_GotFocus"
                                      Validation.ErrorTemplate="{StaticResource errorTemplate}">
                                 <TextBox.Text>
                                     <Binding Path="NumberOfViews"
@@ -409,7 +407,6 @@
                                    Grid.Column="0"
                                    Margin="5,0"
                                    Content="{x:Static resources:UIStrings.AngleLabel}"
-                                   Target="{Binding ElementName=AngleTextBlock}"
                                    VerticalAlignment="Center"/>
 
                             <TextBox x:Name="AngleTextBlock"
@@ -419,7 +416,6 @@
                                      VerticalContentAlignment="Center"
                                      IsTabStop="True"
                                      TabIndex="2"
-                                     GotFocus="TextBox_GotFocus"
                                      Validation.ErrorTemplate="{StaticResource errorTemplate}">
                                 <TextBox.Text>
                                     <Binding Path="RotationAngle"
@@ -492,8 +488,7 @@
                                      Grid.Column="1"                                 
                                      Height="25"
                                      DockPanel.Dock="Left"
-                                     VerticalContentAlignment="Center"
-                                     GotFocus="TextBox_GotFocus">
+                                     VerticalContentAlignment="Center">
                                 <TextBox.Text>
                                     <Binding Path="ViewNameTemplate"
                                              UpdateSourceTrigger="PropertyChanged">
